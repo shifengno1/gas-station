@@ -8,8 +8,10 @@
 
 #### 2.更新到本地仓库 git pull
 
-#### 3.查看本地修改 git status \ git add .
+#### 3.查看本地修改 git status
 
-#### 4.提交到本地仓库 git commit -m 'my code add'
+#### 4.添加所有修改的文件 git add .
 
-#### 5.提交到远程仓库master分支 git push origin master
+#### 5.提交到本地仓库 git commit -m 'my code add'
+
+#### 6.提交到远程仓库master分支 git push origin master
