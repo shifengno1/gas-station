@@ -2,8 +2,6 @@
  * Created by chenqu on 2017/9/29.
  */
 import React, { Component } from 'react';
-import CheckboxHighlight from '../components/CheckboxHighlight';
-import InputCompoennt from '../components/InputComponent';
 import './DetailContainer.pcss';
 
 export default class DetailContainer extends Component {
@@ -63,11 +61,11 @@ export default class DetailContainer extends Component {
         });
     }
 
-    onCheckboxChange = (selected) => {
+    onCheckboxChange(selected) {
         console.log('checkoutbox:', selected);
     }
 
-    onInputChange = (inputValue) => {
+    onInputChange(inputValue) {
         this.setState({
             inputValue,
         });
@@ -95,26 +93,7 @@ export default class DetailContainer extends Component {
         const value = true;
         return (
             <div className="content-padded">
-                <div className="input-style">
-                    <InputCompoennt onChange={this.onInputChange} />
-                </div>
-                <div className="checkbox-wrapper">
-                    {
-                        dataNew.map((item, index) => {
-                            return (
-                                <div key={`checkbox${index}`}>
-                                    <CheckboxHighlight
-                                        onChange={this.onCheckboxChange}
-                                        labelFront={item.labelFront}
-                                        labelHighlight={item.labelHighlight}
-                                        labelEnd={item.labelEnd}
-                                        bool={true}
-                                    />
-                                </div>
-                            );
-                        })
-                    }
-                </div>
+                {1231231}
             </div>
         );
     }
