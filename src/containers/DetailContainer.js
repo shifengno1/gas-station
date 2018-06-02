@@ -2,10 +2,10 @@
  * Created by chenqu on 2017/9/29.
  */
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import './DetailContainer.pcss';
 
 export default class DetailContainer extends Component {
-
     constructor(props) {
         super(props);
         this.onCheckboxChange = this.onCheckboxChange.bind(this);
