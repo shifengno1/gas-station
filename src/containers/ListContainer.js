@@ -4,7 +4,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import actions from '../actions/listAction';
-import WrappedDynamicFieldSet from '../components/DynamicFieldSet';
 
 @connect((state) => ({
     data: state.list.data,
@@ -16,10 +15,10 @@ export default class ListContainer extends Component {
 
     constructor(props) {
         super(props);
-        this.getData = ::this.getData;
+        this.getData = this.getData.bind(this);
     }
 
-    getData = () => {
+    getData() {
         const { fetchData } = this.props;
         fetchData();
     }
@@ -30,9 +29,6 @@ export default class ListContainer extends Component {
             <div>
                 <button onClick={this.getData}>发起请求</button>
                 <div>{JSON.stringify(data)}</div>
-                <div>
-                    <WrappedDynamicFieldSet />
-                </div>
             </div>
         );
     }
