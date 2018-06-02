@@ -1,7 +1,5 @@
 # gas-station
 
-## 香奴结构
+### 项目kaifa
 
-```bash
-npm install
-```
+- 

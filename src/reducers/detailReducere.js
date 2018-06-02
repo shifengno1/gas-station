@@ -5,15 +5,19 @@ import * as constant from '../configs/actions';
 import { createReducer } from '../lib/common';
 
 const defaultState = {
-    show: true,
+    show: false,
 };
 
 export default createReducer(defaultState, {
     [constant.SHOW_OPERATION]: (state, action) => {
-        return {
+        console.log('state', state);
+        const newState = {
             ...state,
+            // show: false,
             show: true,
         };
+        console.log('newState', newState);
+        return newState;
     },
     [constant.HIDE_OPERATION]: (state, action) => {
         return {

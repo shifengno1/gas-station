@@ -6,6 +6,7 @@ import { createReducer } from '../lib/common';
 
 const defaultState = {
     data: {},
+    id: '12312321321',
 };
 
 export default createReducer(defaultState, {
@@ -13,6 +14,7 @@ export default createReducer(defaultState, {
         return {
             ...state,
             data: action.data,
+            id: action.data.data.list[0].id,
         };
     },
 });

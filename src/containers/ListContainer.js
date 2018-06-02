@@ -5,13 +5,14 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import actions from '../actions/listAction';
 
-@connect((state) => ({
-    data: state.list.data,
-}), {
-    fetchData: actions.fetchData,
-})
+// @connect((state) => ({
+//     data: state.list.data,
+//     id: state.list.id,
+// }), {
+//     fetchData: actions.fetchData,
+// })
 
-export default class ListContainer extends Component {
+class ListContainer extends Component {
 
     constructor(props) {
         super(props);
@@ -24,13 +25,20 @@ export default class ListContainer extends Component {
     }
 
     render() {
-        const { data } = this.props;
+        const { data, id } = this.props;
         return (
             <div>
                 <button onClick={this.getData}>发起请求</button>
                 <div>{JSON.stringify(data)}</div>
+                <h1>{id}</h1>
             </div>
         );
     }
 }
 
+export default connect((state) => ({
+    data: state.list.data,
+    id: state.list.id,
+}), {
+    fetchData: actions.fetchData,
+})(ListContainer);
