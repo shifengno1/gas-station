@@ -15,3 +15,9 @@
 #### 5.提交到本地仓库 git commit -m "我的本次代码改动说明"
 
 #### 6.提交到远程仓库master分支 git push origin master
+
+#### 7.切换分支 git checkout wangsf
+
+#### 8.查看当前分支 git branch
+
+#### 9.提交后合并到dev分支 git checkout dev;git merge wangsf;
