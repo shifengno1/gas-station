@@ -12,6 +12,6 @@
 
 #### 4.添加所有修改的文件 git add .
 
-#### 5.提交到本地仓库 git commit -m 'my code add'
+#### 5.提交到本地仓库 git commit -m "我的本次代码改动说明"
 
 #### 6.提交到远程仓库master分支 git push origin master
