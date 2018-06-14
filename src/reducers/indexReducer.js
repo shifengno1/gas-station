@@ -1,6 +1,3 @@
-/**
- * Created by chenqu on 2017/10/10.
- */
 import * as constant from '../configs/actions';
 import { createReducer } from '../lib/common';
 

@@ -1,6 +1,3 @@
-/**
- * Created by chenqu on 2017/8/9.
- */
 import React, { Component } from 'react';
 import Release from '../Release/Release';
 import Waiting from '../Waiting/Waiting';

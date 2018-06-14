@@ -1,6 +1,3 @@
-/**
- * Created by chenqu on 2017/8/10.
- */
 import React, { Component } from 'react';
 
 import './ProgressBar.pcss';

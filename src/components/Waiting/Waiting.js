@@ -1,6 +1,3 @@
-/**
- * Created by chenqu on 2017/9/6.
- */
 import React, { PureComponent } from 'react';
 import './common.pcss';
 
