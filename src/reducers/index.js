@@ -3,8 +3,10 @@
  */
 import detail from './detailReducere';
 import list from './listReducer';
+import index from './indexReducer';
 
 export default {
     detail,
     list,
+    index,
 };

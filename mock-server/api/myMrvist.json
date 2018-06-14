@@ -1,0 +1,49 @@
+{
+  "code": 200,
+  "msg": "success",
+  "data": [{
+        "moduleId": 1,
+        "moduleType": "C",
+        "indicators":[{
+            "indicatorName": "CPC发布额",
+            "indicatorValue": "￥1000"
+        }],
+        "subIndicators":[{
+            "indicatorName": "1-30天发布额",
+            "indicatorValue": "￥500",
+            "ratio": "",
+            "trend": "",
+            "rate":  "",
+            "target": ""
+        },{
+            "indicatorName": "31-90天发布额",
+            "indicatorValue": "￥500",
+            "ratio": "",
+            "trend": "",
+            "rate":  "",
+            "target": ""
+        }]
+    },{
+        "moduleId": 1,
+        "moduleType": "C",
+        "indicators":[{
+            "indicatorName": "展示广告发布额",
+            "indicatorValue": "￥1000"
+        }],
+        "subIndicators":[{
+            "indicatorName": "CPT发布额",
+            "indicatorValue": "￥500",
+            "ratio": "",
+            "trend": "",
+            "rate":  "",
+            "target": ""
+        },{
+            "indicatorName": "NCPM发布额",
+            "indicatorValue": "￥500",
+            "ratio": "",
+            "trend": "",
+            "rate":  "",
+            "target": ""
+        }]
+    }]
+}

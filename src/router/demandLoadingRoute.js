@@ -7,6 +7,7 @@ import detailRoute from './detailRoute';
 import formRoute from './formRoute';
 import listRoute from './listRoute';
 import testRoute from './testRoute';
+import indexRoute from './indexRoute';
 
 const demandLoadingRoute = {
     path: '/',
@@ -16,6 +17,7 @@ const demandLoadingRoute = {
         listRoute,
         formRoute,
         testRoute,
+        indexRoute,
     ],
     indexRoute: {
         component: Index,

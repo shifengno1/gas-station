@@ -1,24 +1,52 @@
 {
   "code": 200,
   "msg": "success",
-  "data": {
-    "list": [
+  "data": [
       {
-        "id": 1,
-        "description": "这是一个脚手架"
+          "moduleId": 1,
+          "moduleType": "A",
+          "indicators":[{
+              "indicatorName": "总发布额",
+              "indicatorValue": "￥1,234,97,232",
+              "ratio": "￥1,000",
+              "trend": "up",
+              "rate": 1.23,
+              "target": "￥2,1231,232,234"
+          }]
       },
       {
-        "id": 2,
-        "description": "这是一个脚手架"
+          "moduleId": 1,
+          "moduleType": "A",
+          "indicators":[{
+              "indicatorName": "展示广告收款项",
+              "indicatorValue": "￥1,123,123,1232",
+              "ratio": "￥1,234",
+              "trend": "down",
+              "rate": 1.35,
+              "target": "￥2,1231"
+          }]
       },
       {
-        "id": 3,
-        "description": "这是一个脚手架"
-      },
-      {
-        "id": 4,
-        "description": "这是一个脚手架"
+          "moduleId": 2,
+          "moduleType": "B",
+          "indicators":[
+              {
+                  "indicatorName": "新开门店数",
+                  "indicatorValue": "7,654",
+                  "ratio": "1,234",
+                  "trend": "up",
+                  "rate": "",
+                  "target":""
+              },
+              {
+                  "indicatorName": "当日在线门店数",
+                  "indicatorValue": "200",
+                  "ratio": "20",
+                  "trend": "down",
+                  "rate": "",
+                  "target":""
+              }
+          ]
       }
-    ]
-  }
+  ]
 }

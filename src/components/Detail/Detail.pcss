@@ -1,0 +1,123 @@
+@import './common.pcss';
+.detail-content{
+    height: auto;
+    width: auto;
+    display: block;
+    .detail-title{
+        min-height: 39px;
+        width: auto;
+        color: #333;
+        background: #f5f5f5;
+        display: block;
+        padding: 0px 10px;
+        .title-name{
+            display: inline-block;
+            float: left;
+            font-size: 14px;
+            line-height: 39px;
+        }
+        .title-value{
+            display: inline-block;
+            float: right;
+            font-size: 17px;
+            line-height: 39px;
+
+        }
+    }
+    .detail-item{
+        min-height: 39px;
+        width: auto;
+        display: block;
+        padding: 0px 10px;
+        border-bottom:1px dashed #e1e1e1;
+        .item1-name{
+            display: inline-block;
+            float: left;
+            color: #999;
+            font-size: 14px;
+            line-height: 39px;
+        }
+        .item1-value{
+            display: inline-block;
+            float: right;
+            font-size: 14px;
+            color: #333;
+            line-height: 39px;
+
+        }
+    }
+    .detail-item-44{
+        min-height: 44px;
+        width: auto;
+        display: block;
+        padding: 0px 10px;
+        border-bottom:1px dashed #e1e1e1;
+        .item-name{
+            display: inline-block;
+            float: left;
+            color: #999;
+            font-size: 14px;
+            line-height: 44px;
+        }
+        .item-value{
+            display: inline-block;
+            float: right;
+            font-size: 14px;
+            color: #333;
+            /*line-height: 44px;*/
+            margin-top: 2px;
+            text-align: right;
+        }
+    }
+    .shop-note-up{
+        width: auto;
+        height: auto;
+        display: block;
+        text-align: center;
+        color: #999;
+        font-size: 12px;
+        span{
+            color: #FE5353;
+            font-size: 12px;
+            position: relative;
+            &:before {
+                position: absolute;
+                z-index: 1;
+                content:"";
+                background: url('./i/icn_up.png');
+                background-size: 6px 9px;
+                background-repeat: no-repeat;
+                width: 12px;
+                height: 16px;
+                right: -15px;
+                top: 4px;
+            }
+        }
+    }
+    .shop-note-down{
+        width: auto;
+        height: auto;
+        display: block;
+        text-align: center;
+        color: #999;
+        font-size: 12px;
+        span{
+            color: #41b83b;
+            font-size: 12px;
+            position: relative;
+            &:before {
+                position: absolute;
+                z-index: 1;
+                content:"";
+                background: url('./i/icn_down.png');
+                background-size: 6px 9px;
+                background-repeat: no-repeat;
+                width: 12px;
+                height: 16px;
+                right: -15px;
+                top: 4px;
+            }
+        }
+    }
+}
+

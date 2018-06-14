@@ -9,6 +9,7 @@ export default class ClassifyRouterComponent extends Component {
         return (
             <div>
                 <ul>
+                    <li><Link to="/index">index</Link></li>
                     <li><Link to="/list">list</Link></li>
                     <li><Link to="/detail">detail</Link></li>
                     <li><Link to="/form">form</Link></li>
