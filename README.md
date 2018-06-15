@@ -25,3 +25,5 @@
 ### 启动命令
 
 #### 1.npm run dev
+
+#### 2.liupan test
