@@ -12,7 +12,7 @@ import studyRoute from './studyRoute';
 
 const demandLoadingRoute = {
     path: '/',
-    // component: ClassifyRouterComponent,
+    component: ClassifyRouterComponent,
     childRoutes: [
         detailRoute,
         listRoute,
