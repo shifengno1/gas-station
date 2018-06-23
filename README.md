@@ -22,5 +22,10 @@
 
 #### 9.提交后合并到dev分支 git checkout dev;git merge wangsf;
 
-### 2018年6月13日
+### 启动命令
 
+#### 1.npm run dev
+
+#### 2.liupan test
+
+#### 4.liupan test 2
