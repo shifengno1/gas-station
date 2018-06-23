@@ -8,3 +8,6 @@ export const FETCH_DATA = 'FETCH_DATA';
 export const INDEX_LIST = 'INDEX_LIST';
 export const MODULE_DETAIL = 'MODULE_DETAIL';
 export const MR_VISIT = 'MR_VISIT';
+
+export const CHANGE_HINT = 'CHANGE_HINT';
+export const FETCH_LIST_DATA = 'FETCH_LIST_DATA';

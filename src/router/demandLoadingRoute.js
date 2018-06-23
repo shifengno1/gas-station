@@ -8,16 +8,18 @@ import formRoute from './formRoute';
 import listRoute from './listRoute';
 import testRoute from './testRoute';
 import indexRoute from './indexRoute';
+import studyRoute from './studyRoute';
 
 const demandLoadingRoute = {
     path: '/',
-    component: ClassifyRouterComponent,
+    // component: ClassifyRouterComponent,
     childRoutes: [
         detailRoute,
         listRoute,
         formRoute,
         testRoute,
         indexRoute,
+        studyRoute,
     ],
     indexRoute: {
         component: Index,
