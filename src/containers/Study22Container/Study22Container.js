@@ -26,7 +26,7 @@ class Study22Container extends Component {
         // 组件渲染结束之后调用
         const param = {};
         await this.props.fetchListData(param);
-        const { listData } = this.props;
+        // const { listData } = this.props;
         // qingqiu
     }
 
@@ -49,7 +49,9 @@ class Study22Container extends Component {
     render() {
         // console.log('enter render');
         const { showHint, contentStyle } = this.state;
-        const { hint, listData } = this.props;
+        const { listData } = this.props;
+        alert('1');
+        alert(JSON.stringify(listData));
         return (<div className={contentStyle}>{JSON.stringify(listData)}</div>);
     }
 }

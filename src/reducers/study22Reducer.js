@@ -3,7 +3,7 @@ import { createReducer } from '../lib/common';
 
 const defaultState = {
     hint: 'init',
-    listData: {},
+    listData: { id: '121212' },
 };
 
 export default createReducer(defaultState, {
