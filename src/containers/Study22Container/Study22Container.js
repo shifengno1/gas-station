@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import actions from '../../actions/studyAction';
+import actions from '../../actions/study22Action';
 import './Study22Container.css'; // 样式引用
 
 class Study22Container extends Component {
@@ -43,15 +43,15 @@ class Study22Container extends Component {
     }
 
     render() {
-        console.log('enter render');
+        // console.log('enter render');
         const { showHint, contentStyle } = this.state;
         const { hint, listData } = this.props;
         return (<div className={contentStyle} onClick={this.onDivClick}>{JSON.stringify(listData)}</div>);
     }
 }
 export default connect((state) => ({
-    hint: state.study.hint,
-    listData: state.study.listData,
+    hint: state.study22.hint,
+    listData: state.study22.listData,
     // detailData: state.index.detailData,
 }), {
     changeHint: actions.changeHint,

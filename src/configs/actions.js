@@ -11,3 +11,6 @@ export const MR_VISIT = 'MR_VISIT';
 
 export const CHANGE_HINT = 'CHANGE_HINT';
 export const FETCH_LIST_DATA = 'FETCH_LIST_DATA';
+
+export const CHANGE_HINT22 = 'CHANGE_HINT22';
+export const FETCH_LIST_DATA22 = 'FETCH_LIST_DATA22';
