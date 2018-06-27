@@ -6,6 +6,7 @@ import list from './listReducer';
 import index from './indexReducer';
 import study from './studyReducer';
 import study22 from './study22Reducer';
+import login from './loginReducer';
 
 export default {
     detail,
@@ -13,4 +14,5 @@ export default {
     index,
     study,
     study22,
+    login,
 };
