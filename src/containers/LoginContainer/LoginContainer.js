@@ -59,7 +59,7 @@ class LoginContainer extends Component {
         return (<div className="content-wrapper">
             <div className="release-wrapper">
                 <div className="incontent-wrapper">
-                    <img src={require('./i/icn_crown.png')} alt={'2'} />
+                    <img src={require('./i/icn_crown.png')} alt={'2'} className="imgSize" />
                 </div>
                 <div className="incontent-wrapper">
                     <Form onSubmit={this.handleSubmit} className="login-form">

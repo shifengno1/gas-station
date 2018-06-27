@@ -33,3 +33,10 @@
 .login-form-button {
     width: 100%;
 }
+
+.imgSize{
+    height: 60px;
+    width: 300px;
+    justify-content:center;
+    align-items:center;
+}
