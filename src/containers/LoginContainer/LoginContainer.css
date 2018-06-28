@@ -20,12 +20,14 @@
 .incontent-wrapper{
     width: auto;
     height: auto;
-    border: 1px solid blue;
-    box-sizing: border-box;
+    /*border: 1px solid blue;*/
+    /*box-sizing: border-box;*/
+    border-color: transparent;
 }
 
 .login-form {
-    max-width: 300px;
+    max-width: 313px;
+    padding: 15px 5px 0 5px;
 }
 .login-form-forgot {
     float: right;
@@ -36,7 +38,7 @@
 
 .imgSize{
     height: 60px;
-    width: 300px;
+    width: 313px;
     justify-content:center;
     align-items:center;
 }

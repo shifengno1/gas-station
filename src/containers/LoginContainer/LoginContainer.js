@@ -11,7 +11,7 @@ const FormItem = Form.Item; // 样式引用
 class LoginContainer extends Component {
 
     constructor(props) {
-        alert('constructor');
+        // alert('constructor');
         super(props);
         this.onDivClick = this.onDivClick.bind(this);
         this.state = {
