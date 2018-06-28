@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import 'antd/dist/antd.css';
-import ReactDOM from 'react-dom';
-import { Form, Icon, Input, Button, Checkbox } from 'antd';
+import { Select, Input } from 'antd';
 // import actions from '../../actions/study22Action';
 import './RepairContainer.css';
 
-const FormItem = Form.Item; // 样式引用
+const Option = Select.Option;
+const { TextArea } = Input;
 
 class RepairContainer extends Component {
 
@@ -56,8 +56,37 @@ class RepairContainer extends Component {
         const { listData } = this.props;
         // alert('1');
         // alert(JSON.stringify(listData));
-        return (<div>
-            123
+        return (<div className="content">
+            <div className="title">
+                <div>
+                    <img src={require('./i/icon-back2.png')} alt={'返回1'} className="imgSize" />
+                </div>
+                <div className="title-center">报修</div>
+            </div>
+            <div className="content-wrapper">
+                <div className="release-wrapper">
+                    <h5 style={{ display: 'inline' }}>站点名称：</h5>
+                    <Select
+                        style={{ width: '100%', display: 'inline' }}
+                        placeholder="Tags Mode"
+                        label={'zhandian123'}
+                    >
+                        <Option value="jack">Jack</Option>
+                        <Option value="lucy">Lucy</Option>
+                        <Option value="jack">Jack</Option>
+                        <Option value="lucy">Lucy</Option>
+                        <Option value="jack">Jack</Option>
+                        <Option value="lucy">Lucy</Option>
+                    </Select>
+                    <h5 style={{ display: 'inline' }}>报修项目：</h5>
+                    <Input placeholder="" />
+                    <h5 style={{ display: 'inline' }}>详细说明：</h5>
+                    <TextArea placeholder="" rows={6} />
+                    <div style={{ textAlign: 'center' }}>
+                        <input type="button" value="提交" className="button" />
+                    </div>
+                </div>
+            </div>
         </div>);
     }
 }
