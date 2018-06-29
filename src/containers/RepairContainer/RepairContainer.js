@@ -49,6 +49,9 @@ class RepairContainer extends Component {
         // const param = {};
         // this.props.fetchListData(param);
     }
+    onSubmit() {
+        console.log('submitting');
+    }
 
     render() {
         // console.log('enter render');
@@ -67,14 +70,9 @@ class RepairContainer extends Component {
                 <div className="release-wrapper">
                     <h5 style={{ display: 'inline' }}>站点名称：</h5>
                     <Select
-                        style={{ width: '100%', display: 'inline' }}
-                        placeholder="Tags Mode"
-                        label={'zhandian123'}
+                        style={{ width: '100%', display: 'inline', fontSize: '10px' }}
+                        placeholder="请选择"
                     >
-                        <Option value="jack">Jack</Option>
-                        <Option value="lucy">Lucy</Option>
-                        <Option value="jack">Jack</Option>
-                        <Option value="lucy">Lucy</Option>
                         <Option value="jack">Jack</Option>
                         <Option value="lucy">Lucy</Option>
                     </Select>
@@ -82,7 +80,7 @@ class RepairContainer extends Component {
                     <Input placeholder="" />
                     <h5 style={{ marginTop: '10px', marginBottom: '0' }}>详细说明：</h5>
                     <TextArea placeholder="" rows={6} />
-                    <Button type="primary" htmlType="submit" className="login-form-button" style={{ marginTop: '20px', marginBottom: '0' }}>
+                    <Button type="primary" htmlType="submit" className="login-form-button" style={{ marginTop: '20px', marginBottom: '0' }} onClick={this.onSubmit}>
                         提交
                     </Button>
                 </div>
