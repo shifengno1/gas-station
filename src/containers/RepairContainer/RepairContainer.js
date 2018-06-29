@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import 'antd/dist/antd.css';
-import { Select, Input } from 'antd';
+import { Select, Input, Button } from 'antd';
 // import actions from '../../actions/study22Action';
 import './RepairContainer.css';
 
@@ -59,7 +59,7 @@ class RepairContainer extends Component {
         return (<div className="content">
             <div className="title">
                 <div>
-                    <img src={require('./i/icon-back2.png')} alt={'返回1'} className="imgSize" />
+                    <img src={require('./i/icon-back2.png')} alt={'返回1'} className="imgSize2" />
                 </div>
                 <div className="title-center">报修</div>
             </div>
@@ -78,13 +78,13 @@ class RepairContainer extends Component {
                         <Option value="jack">Jack</Option>
                         <Option value="lucy">Lucy</Option>
                     </Select>
-                    <h5 style={{ display: 'inline' }}>报修项目：</h5>
+                    <h5 style={{ marginTop: '10px', marginBottom: '0' }}>报修项目：</h5>
                     <Input placeholder="" />
-                    <h5 style={{ display: 'inline' }}>详细说明：</h5>
+                    <h5 style={{ marginTop: '10px', marginBottom: '0' }}>详细说明：</h5>
                     <TextArea placeholder="" rows={6} />
-                    <div style={{ textAlign: 'center' }}>
-                        <input type="button" value="提交" className="button" />
-                    </div>
+                    <Button type="primary" htmlType="submit" className="login-form-button" style={{ marginTop: '20px', marginBottom: '0' }}>
+                        提交
+                    </Button>
                 </div>
             </div>
         </div>);

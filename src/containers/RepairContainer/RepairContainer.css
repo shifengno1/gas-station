@@ -62,7 +62,7 @@
     width: 100%;
 }
 
-.imgSize{
+.imgSize2{
     position: absolute;
     height: 24px;
     width: 24px;
@@ -71,8 +71,10 @@
 }
 .button{
     text-align: center;
-    color: blue;
+    color: #fff;
     margin: 10px 30px;
     width: 60px;
     height: auto;
+    background-color: #1890ff;
+    border-color: #1890ff;
 }
