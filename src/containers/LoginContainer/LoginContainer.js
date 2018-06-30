@@ -17,6 +17,7 @@ class LoginContainer extends Component {
         this.handleUsernameChange = this.handleUsernameChange.bind(this);
         this.handlePasswordChange = this.handlePasswordChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.toRegPage = this.toRegPage.bind(this);
         this.state = {
             username: '',
             password: '',
@@ -41,7 +42,6 @@ class LoginContainer extends Component {
     componentWillReceiveProps(nextProps) {
         // props刷新的时候调用， nextProps新的props
     }
-
     onDivClick() {
         // console.log('q123e1');
         // this.setState({
@@ -52,6 +52,9 @@ class LoginContainer extends Component {
         // alert(JSON.stringify(this.props.changeHint()));
         // const param = {};
         // this.props.fetchListData(param);
+    }
+    toRegPage() {
+        location.href = `${location.protocol}//${location.host}/entry/index.html?#/index`;
     }
     handleUsernameChange(event) {
         this.setState({
@@ -111,7 +114,7 @@ class LoginContainer extends Component {
                     >
                         登陆
                     </Button>
-                    还没账号？<a href="">注册</a>
+                    还没账号？<a href="javascript:void(0);" onClick={this.toRegPage}>注册</a>
                 </div>
             </div>
         </div>);
