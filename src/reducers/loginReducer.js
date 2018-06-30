@@ -4,7 +4,7 @@ import { createReducer } from '../lib/common';
 const defaultState = {
     // hint: 'init',
     // listData: {},
-    msg: '',
+    code: '',
 };
 
 export default createReducer(defaultState, {
@@ -12,7 +12,7 @@ export default createReducer(defaultState, {
         console.log('action', action);
         return {
             ...state,
-            msg: action.data.msg,
+            code: action.data.code,
         };
     },
 });

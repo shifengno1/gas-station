@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import 'antd/dist/antd.css';
 import ReactDOM from 'react-dom';
-import { Form, Icon, Input, Button, Checkbox } from 'antd';
+import { Form, Icon, Input, Button, Checkbox, Divider } from 'antd';
 import actions from '../../actions/loginAction';
-import './LoginContainer.css';
+import './LoginContainer.pcss';
 
 const FormItem = Form.Item; // 样式引用
 
@@ -18,10 +18,15 @@ class LoginContainer extends Component {
         this.handlePasswordChange = this.handlePasswordChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.toRegPage = this.toRegPage.bind(this);
+        this.testAlert = this.testAlert.bind(this);
         this.state = {
             username: '',
             password: '',
             msg: '',
+            hintnMsg: 'saasasasasaas',
+            showAlert: false,
+            Ctime: null,
+            count: 0,
         };
     }
 
@@ -56,6 +61,15 @@ class LoginContainer extends Component {
     toRegPage() {
         location.href = `${location.protocol}//${location.host}/entry/index.html?#/index`;
     }
+    testAlert() {
+        let { count } = this.state;
+        this.showFunc(count, 4000, () => {
+            location.href = 'http://www.baidu.com';
+        });
+        this.setState({
+            count: ++count,
+        });
+    }
     handleUsernameChange(event) {
         this.setState({
             username: event.target.value,
@@ -66,22 +80,50 @@ class LoginContainer extends Component {
             password: event.target.value,
         });
     }
-    handleSubmit() {
+    showFunc(message, t, callback) {
+        const { Ctime } = this.state;
+        clearTimeout(Ctime);
+        let timeSet;
+        if (!t) {
+            timeSet = 2000;
+        } else {
+            timeSet = t;
+        }
+        const time = setTimeout(() => {
+            this.setState({
+                showAlert: false,
+            });
+            if (callback) {
+                callback();
+            }
+        }, timeSet);
+        this.setState({
+            showAlert: true,
+            hintnMsg: message,
+            Ctime: time,
+        });
+    }
+    async handleSubmit() {
         // const { username, password } = this.state;
         // console.log(`username${username}`);
         // console.log(`password${password}`);
-        if (this.props.onSubmit) {
-            const { username, password } = this.state;
-            this.props.onSubmit({ username, password });
+        const { username, password } = this.state;
+        await this.props.onSubmit({ username, password });
+        if (this.props.code === 200) {
+            this.showFunc('dengluchenggong');
+            setTimeout(() => {
+                location.href = 'http://www.baidu.com';
+            }, 2000);
         }
-        // alert(this.state.msg);
-        this.setState({ password: '' });
+        // console.log(this.props.code);
+        // // alert(this.state.msg);
+        // this.setState({ password: '' });
     }
 
 
     render() {
         // console.log('enter render');
-        const { showHint, contentStyle } = this.state;
+        const { showHint, contentStyle, showAlert } = this.state;
         const { listData } = this.props;
         // alert('1');
         // alert(JSON.stringify(listData));
@@ -91,19 +133,23 @@ class LoginContainer extends Component {
                     <img src={require('./i/icn_crown.png')} alt={'2'} className="imgSize" />
                 </div>
                 <div className="incontent-wrapper">
-                    <Input
-                        prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />}
-                        placeholder="用户名"
-                        value={this.state.username}
-                        onChange={this.handleUsernameChange}
-                    />
-                    <Input
-                        prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />}
-                        type="password"
-                        placeholder="密码"
-                        value={this.state.password}
-                        onChange={this.handlePasswordChange}
-                    />
+                    <div>
+                        <Input
+                            prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />}
+                            placeholder="用户名"
+                            value={this.state.username}
+                            onChange={this.handleUsernameChange}
+                        />
+                    </div>
+                    <div>
+                        <Input
+                            prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />}
+                            type="password"
+                            placeholder="密码"
+                            value={this.state.password}
+                            onChange={this.handlePasswordChange}
+                        />
+                    </div>
                     <Checkbox>记住我</Checkbox>
                     <a className="login-form-forgot" href="">忘记密码</a>
                     <Button
@@ -114,9 +160,20 @@ class LoginContainer extends Component {
                     >
                         登陆
                     </Button>
-                    还没账号？<a href="javascript:void(0);" onClick={this.toRegPage}>注册</a>
+                    {/* <Button
+                        type="primary"
+                        htmlType="submit"
+                        className="login-form-button"
+                        onClick={this.testAlert}
+                    >
+                        测试
+                    </Button>
+                    还没账号？<a href="javascript:void(0);" onClick={this.toRegPage}>注册</a> */}
                 </div>
             </div>
+            {
+                showAlert && <div className="hint-wrapper"><div className="hint-style">{ this.state.hintnMsg }</div></div>
+            }
         </div>);
     }
 }
@@ -124,7 +181,7 @@ export default connect((state) => ({
     // hint: state.study22.hint,
     // listData: state.study22.listData,
     // detailData: state.index.detailData,
-    msg: state.login.msg,
+    code: state.login.code,
 }), {
     onSubmit: actions.onSubmit,
     // changeHint: actions.changeHint,
