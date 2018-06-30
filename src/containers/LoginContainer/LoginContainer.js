@@ -28,8 +28,8 @@ class LoginContainer extends Component {
     async componentDidMount() {
         // alert('DidMount');
         // 组件渲染结束之后调用
-        const param = {};
-        await this.props.fetchListData(param);
+        // const param = {};
+        // await this.props.fetchListData(param);
         // const { listData } = this.props;
         // qingqiu
     }
