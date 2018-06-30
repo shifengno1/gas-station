@@ -67,7 +67,12 @@ const fetchOriginData = async({
         //     return { ...obj, [key]: value };
         // }, {});
         // options.body = querystring.stringify(flatData);
-        options.body = JSON.stringify(param);
+        // options.body = JSON.stringify(param);
+        let formData = new FormData();
+        Object.keys(param).map((item, index) => {
+            formData.append(item, param[key]);
+        })
+        options.body = formData;
         options.headers = {
             'Content-Type': 'application/json',
         };
