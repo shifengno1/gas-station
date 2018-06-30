@@ -65,14 +65,11 @@ class LoginContainer extends Component {
     }
     handleSubmit() {
         // const { username, password } = this.state;
-        // this.props.onSubmit({ username, password });
         // console.log(`username${username}`);
         // console.log(`password${password}`);
         if (this.props.onSubmit) {
             const { username, password } = this.state;
             this.props.onSubmit({ username, password });
-            console.log(`username${username}`);
-            console.log(`password${password}`);
         }
         // alert(this.state.msg);
         this.setState({ password: '' });
@@ -91,38 +88,30 @@ class LoginContainer extends Component {
                     <img src={require('./i/icn_crown.png')} alt={'2'} className="imgSize" />
                 </div>
                 <div className="incontent-wrapper">
-                    <Form onSubmit={this.handleSubmit} className="login-form">
-                        <FormItem>
-                            <Input
-                                prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />}
-                                placeholder="用户名"
-                                value={this.state.username}
-                                onChange={this.handleUsernameChange}
-                            />
-                        </FormItem>
-                        <FormItem>
-                            <Input
-                                prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />}
-                                type="password"
-                                placeholder="密码"
-                                value={this.state.password}
-                                onChange={this.handlePasswordChange}
-                            />
-                        </FormItem>
-                        <FormItem>
-                            <Checkbox>记住我</Checkbox>
-                            <a className="login-form-forgot" href="">忘记密码</a>
-                            <Button
-                                type="primary"
-                                htmlType="submit"
-                                className="login-form-button"
-                                onSubmit={this.handleSubmit}
-                            >
-                                登陆
-                            </Button>
-                            还没账号？<a href="">注册</a>
-                        </FormItem>
-                    </Form>
+                    <Input
+                        prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />}
+                        placeholder="用户名"
+                        value={this.state.username}
+                        onChange={this.handleUsernameChange}
+                    />
+                    <Input
+                        prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />}
+                        type="password"
+                        placeholder="密码"
+                        value={this.state.password}
+                        onChange={this.handlePasswordChange}
+                    />
+                    <Checkbox>记住我</Checkbox>
+                    <a className="login-form-forgot" href="">忘记密码</a>
+                    <Button
+                        type="primary"
+                        htmlType="submit"
+                        className="login-form-button"
+                        onClick={this.handleSubmit}
+                    >
+                        登陆
+                    </Button>
+                    还没账号？<a href="">注册</a>
                 </div>
             </div>
         </div>);
