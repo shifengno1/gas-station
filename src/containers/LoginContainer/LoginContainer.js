@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import 'antd/dist/antd.css';
 import ReactDOM from 'react-dom';
 import { Form, Icon, Input, Button, Checkbox } from 'antd';
-// import actions from '../../actions/study22Action';
+import actions from '../../actions/loginAction';
 import './LoginContainer.css';
 
 const FormItem = Form.Item; // 样式引用
@@ -14,9 +14,13 @@ class LoginContainer extends Component {
         // alert('constructor');
         super(props);
         this.onDivClick = this.onDivClick.bind(this);
+        this.handleUsernameChange = this.handleUsernameChange.bind(this);
+        this.handlePasswordChange = this.handlePasswordChange.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
         this.state = {
-            showHint: 'hello world1',
-            contentStyle: 'content-wrapper-red',
+            username: '',
+            password: '',
+            msg: '',
         };
     }
 
@@ -49,6 +53,31 @@ class LoginContainer extends Component {
         // const param = {};
         // this.props.fetchListData(param);
     }
+    handleUsernameChange(event) {
+        this.setState({
+            username: event.target.value,
+        });
+    }
+    handlePasswordChange(event) {
+        this.setState({
+            password: event.target.value,
+        });
+    }
+    handleSubmit() {
+        // const { username, password } = this.state;
+        // this.props.onSubmit({ username, password });
+        // console.log(`username${username}`);
+        // console.log(`password${password}`);
+        if (this.props.onSubmit) {
+            const { username, password } = this.state;
+            this.props.onSubmit({ username, password });
+            console.log(`username${username}`);
+            console.log(`password${password}`);
+        }
+        // alert(this.state.msg);
+        this.setState({ password: '' });
+    }
+
 
     render() {
         // console.log('enter render');
@@ -64,18 +93,34 @@ class LoginContainer extends Component {
                 <div className="incontent-wrapper">
                     <Form onSubmit={this.handleSubmit} className="login-form">
                         <FormItem>
-                            <Input prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />} placeholder="Username" />
+                            <Input
+                                prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />}
+                                placeholder="用户名"
+                                value={this.state.username}
+                                onChange={this.handleUsernameChange}
+                            />
                         </FormItem>
                         <FormItem>
-                            <Input prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />} type="password" placeholder="Password" />
+                            <Input
+                                prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />}
+                                type="password"
+                                placeholder="密码"
+                                value={this.state.password}
+                                onChange={this.handlePasswordChange}
+                            />
                         </FormItem>
                         <FormItem>
-                            <Checkbox>Remember me</Checkbox>
-                            <a className="login-form-forgot" href="">Forgot password</a>
-                            <Button type="primary" htmlType="submit" className="login-form-button">
+                            <Checkbox>记住我</Checkbox>
+                            <a className="login-form-forgot" href="">忘记密码</a>
+                            <Button
+                                type="primary"
+                                htmlType="submit"
+                                className="login-form-button"
+                                onSubmit={this.handleSubmit}
+                            >
                                 登陆
                             </Button>
-                            Or <a href="">register now!</a>
+                            还没账号？<a href="">注册</a>
                         </FormItem>
                     </Form>
                 </div>
@@ -87,7 +132,9 @@ export default connect((state) => ({
     // hint: state.study22.hint,
     // listData: state.study22.listData,
     // detailData: state.index.detailData,
+    msg: state.login.msg,
 }), {
+    onSubmit: actions.onSubmit,
     // changeHint: actions.changeHint,
     // fetchListData: actions.fetchListData,
     // getModuleDetail: actions.getModuleDetail,

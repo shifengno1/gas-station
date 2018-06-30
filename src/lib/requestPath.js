@@ -9,10 +9,12 @@ import envConst from '../configs/envConst';
 
 export default (url) => {
     switch (envConst) {
+        // case env.DEVELOPMENT:
+        //     return `.${url}.json`;
+        // case env.DEVELOPMENT:
+        //     return `${location.protocol}//${location.host}${url}`;
         case env.DEVELOPMENT:
-            return `.${url}.json`;
-        case env.BETA:
-            return `${location.protocol}//${location.host}${url}`;
+            return `http://47.96.143.12:8080/${url}`;
         default:
             return null;
     }
