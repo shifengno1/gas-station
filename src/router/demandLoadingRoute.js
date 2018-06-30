@@ -9,10 +9,14 @@ import listRoute from './listRoute';
 import testRoute from './testRoute';
 import indexRoute from './indexRoute';
 import studyRoute from './studyRoute';
+import study22Route from './study22Route';
+import loginRoute from './loginRoute';
+import registrationRoute from './registrationRoute';
+import repairRoute from './repairRoute';
 
 const demandLoadingRoute = {
     path: '/',
-    // component: ClassifyRouterComponent,
+    component: ClassifyRouterComponent,
     childRoutes: [
         detailRoute,
         listRoute,
@@ -20,6 +24,10 @@ const demandLoadingRoute = {
         testRoute,
         indexRoute,
         studyRoute,
+        study22Route,
+        loginRoute,
+        registrationRoute,
+        repairRoute,
     ],
     indexRoute: {
         component: Index,
