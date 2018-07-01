@@ -66,13 +66,16 @@ class LoginContainer extends Component {
             password: event.target.value,
         });
     }
-    handleSubmit() {
+    async handleSubmit() {
         // const { username, password } = this.state;
         // console.log(`username${username}`);
         // console.log(`password${password}`);
         if (this.props.onSubmit) {
             const { username, password } = this.state;
-            this.props.onSubmit({ username, password });
+            await this.props.onSubmit({ username, password });
+            if (this.props.code === 200) {
+                alert('登陆成功！');
+            }
         }
         // alert(this.state.msg);
         this.setState({ password: '' });
@@ -124,7 +127,7 @@ export default connect((state) => ({
     // hint: state.study22.hint,
     // listData: state.study22.listData,
     // detailData: state.index.detailData,
-    msg: state.login.msg,
+    code: state.login.code,
 }), {
     onSubmit: actions.onSubmit,
     // changeHint: actions.changeHint,
