@@ -80,8 +80,6 @@ class LoginContainer extends Component {
             password: event.target.value,
         });
     }
-<<<<<<< HEAD
-=======
     showFunc(message, t, callback) {
         const { Ctime } = this.state;
         clearTimeout(Ctime);
@@ -105,19 +103,16 @@ class LoginContainer extends Component {
             Ctime: time,
         });
     }
->>>>>>> f04bbee67e7cc0533eb899c8362df903c235c42f
     async handleSubmit() {
         // const { username, password } = this.state;
         // console.log(`username${username}`);
         // console.log(`password${password}`);
-<<<<<<< HEAD
-        if (this.props.onSubmit) {
-            const { username, password } = this.state;
-            await this.props.onSubmit({ username, password });
-            if (this.props.code === 200) {
-                alert('登陆成功！');
-            }
-=======
+        // if (this.props.onSubmit) {
+        //    const { username, password } = this.state;
+        //    await this.props.onSubmit({ username, password });
+        //    if (this.props.code === 200) {
+        //        alert('登陆成功！');
+        //     }
         const { username, password } = this.state;
         await this.props.onSubmit({ username, password });
         if (this.props.code === 200) {
@@ -125,7 +120,6 @@ class LoginContainer extends Component {
             setTimeout(() => {
                 location.href = 'http://www.baidu.com';
             }, 2000);
->>>>>>> f04bbee67e7cc0533eb899c8362df903c235c42f
         }
         // console.log(this.props.code);
         // // alert(this.state.msg);
