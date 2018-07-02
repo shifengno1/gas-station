@@ -16,4 +16,7 @@ export const CHANGE_HINT22 = 'CHANGE_HINT22';
 export const FETCH_LIST_DATA22 = 'FETCH_LIST_DATA22';
 
 export const ON_SUBMIT = 'ON_SUBMIT';
+export const ON_REPAIR_SUBMIT = 'ON_REPAIR_SUBMIT';
+
+export const GET_MY_STATION = 'GET_MY_STATION';
 

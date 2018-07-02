@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import 'antd/dist/antd.css';
 import { Select, Input, Button } from 'antd';
-// import actions from '../../actions/study22Action';
-import './RepairContainer.css';
+import actions from '../../actions/repairAction';
+import './RepairContainer.pcss';
 
 const Option = Select.Option;
 const { TextArea } = Input;
@@ -14,9 +14,19 @@ class RepairContainer extends Component {
         // alert('constructor');
         super(props);
         this.onDivClick = this.onDivClick.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
+        this.repairObject = this.repairObject.bind(this);
+        this.repairContent = this.repairContent.bind(this);
+        // this.testHand = this.testHand.bind(this);
         this.state = {
-            showHint: 'hello world1',
-            contentStyle: 'content-wrapper-red',
+            stationName: '',
+            object: '',
+            content: '',
+            showAlert: false,
+            Ctime: null,
+            count: 0,
+            hintnMsg: '',
+            stationForm: {},
         };
     }
 
@@ -26,10 +36,21 @@ class RepairContainer extends Component {
     }
 
     async componentDidMount() {
+        const { userId } = '11';
+        await this.props.getMyStation({ userId });
+        this.setState({
+            stationForm: this.props.stationForm,
+        });
+        alert(this.state.stationForm);
+        // const { opt } = [];
+        // for (let i = 0, len = this.state.stationForm.length; i < len; i++) {
+            // opt.push(1);
+            // opt.push(<Option value={stationForm[i]}>{stationForm[i]}</Option>);
+        // }
         // alert('DidMount');
         // 组件渲染结束之后调用
-        const param = {};
-        await this.props.fetchListData(param);
+        // const param = {};
+        // await this.props.fetchListData(param);
         // const { listData } = this.props;
         // qingqiu
     }
@@ -49,14 +70,60 @@ class RepairContainer extends Component {
         // const param = {};
         // this.props.fetchListData(param);
     }
-    onSubmit() {
-        console.log('submitting');
+    async handleSubmit() {
+        const { object, content } = this.state;
+        await this.props.onSubmit({ object, content });
+        if (1) {
+            this.showFunc('报修成功！');
+            this.setState({
+                object: '',
+                content: '',
+            });
+        }
+    }
+    repairObject(event) {
+        this.setState({
+            object: event.target.value,
+        });
+    }
+    repairContent(event) {
+        this.setState({
+            content: event.target.value,
+        });
+    }
+    showFunc(message, t, callback) {
+        const { Ctime } = this.state;
+        clearTimeout(Ctime);
+        let timeSet;
+        if (!t) {
+            timeSet = 2000;
+        } else {
+            timeSet = t;
+        }
+        const time = setTimeout(() => {
+            this.setState({
+                showAlert: false,
+            });
+            if (callback) {
+                callback();
+            }
+        }, timeSet);
+        this.setState({
+            showAlert: true,
+            hintnMsg: message,
+            Ctime: time,
+        });
     }
 
     render() {
         // console.log('enter render');
-        const { showHint, contentStyle } = this.state;
-        const { listData } = this.props;
+        const { showHint, contentStyle, showAlert, stationForm } = this.state;
+        console.log(stationForm);
+        const { opt } = [];
+        for (let i = 0, len = stationForm.length; i < len; i++) {
+            opt.push(<Option key={stationForm[i]}>{stationForm[i]}</Option>);
+        }
+        // const { listData } = this.props;
         // alert('1');
         // alert(JSON.stringify(listData));
         return (<div className="content">
@@ -73,17 +140,19 @@ class RepairContainer extends Component {
                         style={{ width: '100%', display: 'inline', fontSize: '10px' }}
                         placeholder="请选择"
                     >
-                        <Option value="jack">Jack</Option>
-                        <Option value="lucy">Lucy</Option>
+                        { opt }
                     </Select>
                     <h5 style={{ marginTop: '10px', marginBottom: '0' }}>报修项目：</h5>
-                    <Input placeholder="" />
+                    <Input placeholder="" value={this.state.object} onChange={this.repairObject} />
                     <h5 style={{ marginTop: '10px', marginBottom: '0' }}>详细说明：</h5>
-                    <TextArea placeholder="" rows={6} />
-                    <Button type="primary" htmlType="submit" className="login-form-button" style={{ marginTop: '20px', marginBottom: '0' }} onClick={this.onSubmit}>
+                    <TextArea placeholder="" rows={6} value={this.state.content} onChange={this.repairContent} />
+                    <Button type="primary" htmlType="submit" className="login-form-button" style={{ marginTop: '20px', marginBottom: '0' }} onClick={this.handleSubmit}>
                         提交
                     </Button>
                 </div>
+                {
+                    showAlert && <div className="hint-wrapper"><div className="hint-style">{ this.state.hintnMsg }</div></div>
+                }
             </div>
         </div>);
     }
@@ -92,8 +161,12 @@ export default connect((state) => ({
     // hint: state.study22.hint,
     // listData: state.study22.listData,
     // detailData: state.index.detailData,
+    code: state.repair.code,
+    stationForm: state.repair.stationForm,
 }), {
     // changeHint: actions.changeHint,
     // fetchListData: actions.fetchListData,
     // getModuleDetail: actions.getModuleDetail,
+    onSubmit: actions.onSubmit,
+    getMyStation: actions.getMyStation,
 })(RepairContainer);

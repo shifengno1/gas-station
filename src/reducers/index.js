@@ -7,6 +7,7 @@ import index from './indexReducer';
 import study from './studyReducer';
 import study22 from './study22Reducer';
 import login from './loginReducer';
+import repair from './repairReducer';
 
 export default {
     detail,
@@ -15,4 +16,5 @@ export default {
     study,
     study22,
     login,
+    repair,
 };

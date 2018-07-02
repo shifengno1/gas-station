@@ -140,7 +140,7 @@ class LoginContainer extends Component {
         return (<div className="content-wrapper">
             <div className="release-wrapper">
                 <div className="incontent-wrapper">
-                    <img src={require('./i/icn_crown.png')} alt={'2'} className="imgSize" />
+                    <img src={require('./i/icn_crown.png')} alt={'山东隆泰石油装备有限公司'} className="imgSize" />
                 </div>
                 <div className="incontent-wrapper">
                     <div className="input-form">
