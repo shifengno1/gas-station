@@ -59,7 +59,7 @@ class LoginContainer extends Component {
         // this.props.fetchListData(param);
     }
     toRegPage() {
-        location.href = `${location.protocol}//${location.host}/entry/index.html?#/index`;
+        location.href = `${location.protocol}//${location.host}/entry/index.html?#/registration`;
     }
     testAlert() {
         let { count } = this.state;
@@ -179,8 +179,8 @@ class LoginContainer extends Component {
                         onClick={this.testAlert}
                     >
                         测试
-                    </Button>
-                    还没账号？<a href="javascript:void(0);" onClick={this.toRegPage}>注册</a> */}
+                    </Button> */}
+                    还没账号？<a href="javascript:void(0);" onClick={this.toRegPage}>注册</a>
                 </div>
             </div>
             {
