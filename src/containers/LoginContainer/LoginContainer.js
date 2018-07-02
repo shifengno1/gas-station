@@ -116,14 +116,18 @@ class LoginContainer extends Component {
         const { username, password } = this.state;
         await this.props.onSubmit({ username, password });
         if (this.props.code === 200) {
-            this.showFunc('dengluchenggong');
+            this.showFunc('登陆成功！');
             setTimeout(() => {
                 location.href = 'http://www.baidu.com';
             }, 2000);
+        } else if (this.props.code === 201) {
+            this.showFunc('用户名不存在！');
+        } else if (this.props.code === 202) {
+            this.showFunc('密码错误！');
         }
         // console.log(this.props.code);
         // // alert(this.state.msg);
-        // this.setState({ password: '' });
+        this.setState({ password: '' });
     }
 
 
@@ -139,7 +143,7 @@ class LoginContainer extends Component {
                     <img src={require('./i/icn_crown.png')} alt={'2'} className="imgSize" />
                 </div>
                 <div className="incontent-wrapper">
-                    <div>
+                    <div className="input-form">
                         <Input
                             prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />}
                             placeholder="用户名"
@@ -147,7 +151,7 @@ class LoginContainer extends Component {
                             onChange={this.handleUsernameChange}
                         />
                     </div>
-                    <div>
+                    <div className="input-form">
                         <Input
                             prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />}
                             type="password"
@@ -158,14 +162,16 @@ class LoginContainer extends Component {
                     </div>
                     <Checkbox>记住我</Checkbox>
                     <a className="login-form-forgot" href="">忘记密码</a>
-                    <Button
-                        type="primary"
-                        htmlType="submit"
-                        className="login-form-button"
-                        onClick={this.handleSubmit}
-                    >
-                        登陆
-                    </Button>
+                    <div className="input-form">
+                        <Button
+                            type="primary"
+                            htmlType="submit"
+                            className="login-form-button"
+                            onClick={this.handleSubmit}
+                        >
+                            登陆
+                        </Button>
+                    </div>
                     {/* <Button
                         type="primary"
                         htmlType="submit"
