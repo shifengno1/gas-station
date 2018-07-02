@@ -10,14 +10,14 @@ const defaultState = {
 
 export default createReducer(defaultState, {
     [constant.ON_REPAIR_SUBMIT]: (state, action) => {
-        console.log('action', action);
+        console.log('action2', action);
         return {
             ...state,
             code: action.data.code,
         };
     },
     [constant.GET_MY_STATION]: (state, action) => {
-        console.log('action22', action);
+        // console.log('action22', action);
         return {
             ...state,
             stationForm: action.data.data,

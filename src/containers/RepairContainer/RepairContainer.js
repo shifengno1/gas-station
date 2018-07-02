@@ -17,6 +17,7 @@ class RepairContainer extends Component {
         this.handleSubmit = this.handleSubmit.bind(this);
         this.repairObject = this.repairObject.bind(this);
         this.repairContent = this.repairContent.bind(this);
+        this.repairStation = this.repairStation.bind(this);
         // this.testHand = this.testHand.bind(this);
         this.state = {
             stationName: '',
@@ -41,7 +42,7 @@ class RepairContainer extends Component {
         this.setState({
             stationForm: this.props.stationForm,
         });
-        alert(this.state.stationForm);
+        // alert(this.state.stationForm);
         // const { opt } = [];
         // for (let i = 0, len = this.state.stationForm.length; i < len; i++) {
             // opt.push(1);
@@ -71,9 +72,12 @@ class RepairContainer extends Component {
         // this.props.fetchListData(param);
     }
     async handleSubmit() {
-        const { object, content } = this.state;
-        await this.props.onSubmit({ object, content });
-        if (1) {
+        const { object, content, stationName } = this.state;
+        // console.log(object);
+        // console.log(content);
+        // console.log(stationName);
+        await this.props.onSubmit({ object, content, stationName });
+        if (this.props.code === 200) {
             this.showFunc('报修成功！');
             this.setState({
                 object: '',
@@ -89,6 +93,11 @@ class RepairContainer extends Component {
     repairContent(event) {
         this.setState({
             content: event.target.value,
+        });
+    }
+    repairStation(event) {
+        this.setState({
+            stationName: event,
         });
     }
     showFunc(message, t, callback) {
@@ -118,10 +127,10 @@ class RepairContainer extends Component {
     render() {
         // console.log('enter render');
         const { showHint, contentStyle, showAlert, stationForm } = this.state;
-        console.log(stationForm);
-        const { opt } = [];
+        // console.log(stationForm);
+        const opt = [];
         for (let i = 0, len = stationForm.length; i < len; i++) {
-            opt.push(<Option key={stationForm[i]}>{stationForm[i]}</Option>);
+            opt.push(<Option key={stationForm[i]} value={stationForm[i]}>{stationForm[i]}</Option>);
         }
         // const { listData } = this.props;
         // alert('1');
@@ -139,6 +148,8 @@ class RepairContainer extends Component {
                     <Select
                         style={{ width: '100%', display: 'inline', fontSize: '10px' }}
                         placeholder="请选择"
+                        value={this.state.stationName}
+                        onChange={this.repairStation}
                     >
                         { opt }
                     </Select>
