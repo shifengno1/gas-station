@@ -13,6 +13,7 @@ import study22Route from './study22Route';
 import loginRoute from './loginRoute';
 import registrationRoute from './registrationRoute';
 import repairRoute from './repairRoute';
+import suggestionRoute from './suggestionRoute';
 
 const demandLoadingRoute = {
     path: '/',
@@ -28,6 +29,7 @@ const demandLoadingRoute = {
         loginRoute,
         registrationRoute,
         repairRoute,
+        suggestionRoute,
     ],
     indexRoute: {
         component: Index,
