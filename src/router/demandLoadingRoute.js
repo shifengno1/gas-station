@@ -9,7 +9,13 @@ import listRoute from './listRoute';
 import testRoute from './testRoute';
 import indexRoute from './indexRoute';
 import studyRoute from './studyRoute';
+
 import memberListRoute from './memberListRoute';
+import study22Route from './study22Route';
+import loginRoute from './loginRoute';
+import registrationRoute from './registrationRoute';
+import repairRoute from './repairRoute';
+import suggestionRoute from './suggestionRoute';
 
 const demandLoadingRoute = {
     path: '/',
@@ -22,6 +28,11 @@ const demandLoadingRoute = {
         indexRoute,
         studyRoute,
         memberListRoute,
+        study22Route,
+        loginRoute,
+        registrationRoute,
+        repairRoute,
+        suggestionRoute,
     ],
     indexRoute: {
         component: Index,

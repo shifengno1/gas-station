@@ -16,6 +16,11 @@ export default class ClassifyRouterComponent extends Component {
                     <li><Link to="/test">test</Link></li>
                     <li><Link to="/study">study</Link></li>
                     <li><Link to="/memberList">会员列表</Link></li>
+                    <li><Link to="/study22">study22</Link></li>
+                    <li><Link to="/login">login</Link></li>
+                    <li><Link to="/registration">registration</Link></li>
+                    <li><Link to="/repair">repair</Link></li>
+                    <li><Link to="/suggestion">suggestion</Link></li>
                 </ul>
                 { this.props.children }
             </div>

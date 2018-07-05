@@ -59,14 +59,11 @@ const fetchOriginData = async({
         });
     } else if (reqMethod === requestMethod.POST) {
         reqPath = requestPath(url);
-        // const flatData = Object.keys(param).reduce((obj, key) => {
-        //     const value = param[key];
-        //     if (typeof value === 'object') {
-        //         return { ...obj, [key]: JSON.stringify(value) };
-        //     }
-        //     return { ...obj, [key]: value };
-        // }, {});
-        // options.body = querystring.stringify(flatData);
+        // const formData = new FormData();
+        // Object.keys(param).map((item, index) => {
+        // formData.append(item, param[item]);
+        //     return null;
+        // });
         options.body = JSON.stringify(param);
         options.headers = {
             'Content-Type': 'application/json',
@@ -74,9 +71,6 @@ const fetchOriginData = async({
     }
     const response = await fetch(reqPath, options);
     const responseData = await Promise.race([timeoutPromise(60000), response.json()]);
-    /**
-     * 差错处理部分，还没做，待完善
-     */
     return {
         json: () => responseData,
     };
@@ -84,11 +78,11 @@ const fetchOriginData = async({
 
 export default async(config) => {
     let responseData = null;
-    if (envConst === env.LOCAL || envConst === env.DEVELOPMENT) {
-        responseData = await getMockData(config);
-        await sleep(MOCK_DELAY);
-    } else {
-        responseData = await fetchOriginData(config);
-    }
+    // if (envConst === env.LOCAL || envConst === env.DEVELOPMENT) {
+    //     responseData = await getMockData(config);
+    //     await sleep(MOCK_DELAY);
+    // } else {
+    responseData = await fetchOriginData(config);
+    // }
     return responseData.json();
 };
