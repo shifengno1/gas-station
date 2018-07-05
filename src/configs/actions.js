@@ -11,3 +11,4 @@ export const MR_VISIT = 'MR_VISIT';
 
 export const CHANGE_HINT = 'CHANGE_HINT';
 export const FETCH_LIST_DATA = 'FETCH_LIST_DATA';
+export const MEMBER_LIST_DATA = 'MEMBER_LIST_DATA';

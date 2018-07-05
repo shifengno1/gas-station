@@ -19,7 +19,7 @@
   "homepage": "https://github.com/cq5282000/webpack-midum#readme",
   "dependencies": {
     "antd": "^3.2.3",
-    "antd-mobile": "^2.1.11",
+    "antd-mobile": "^2.2.0",
     "file-loader": "^1.1.11",
     "less": "^3.0.1",
     "less-loader": "^4.1.0",
@@ -27,6 +27,7 @@
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
     "react-hot-loader": "^3.0.0-beta.7",
+    "react-sticky": "^6.0.3",
     "webpack": "^3.3.0",
     "webpack-dev-server": "^2.6.1"
   },

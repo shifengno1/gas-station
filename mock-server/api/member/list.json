@@ -1,0 +1,32 @@
+{
+  "code": 200,
+  "msg": "success",
+  "data": {
+    "pageSize": 10,
+    "rows": [{
+      "name": "王辉",
+      "phone": "16511111111",
+      "icCardNum": "1622211343",
+      "cardSum": 500.0,
+      "plateNumber": "3333aa",
+      "createTime": "2018-06-01"
+    }, {
+      "name": "王强",
+      "phone": "12333333311",
+      "icCardNum": "12333333311",
+      "cardSum": 1237.0,
+      "plateNumber": "12333333311",
+      "createTime": "2018-06-01"
+    }, {
+      "name": "张明开",
+      "phone": "18817558987",
+      "icCardNum": "1211111111",
+      "cardSum": 0.0,
+      "plateNumber": "wwwww",
+      "createTime": "2018-05-01"
+    }],
+    "total": 3,
+    "pageNo": 0,
+    "startOfPage": 0
+  }
+}

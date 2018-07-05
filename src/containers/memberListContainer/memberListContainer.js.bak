@@ -1,0 +1,16 @@
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { ListView } from 'antd-mobile';
+import { StickyContainer, Sticky } from 'react-sticky';
+import 'antd-mobile/dist/antd-mobile.css';
+import actions from '../../actions/memberListAction';
+import './memberListContainer.pcss'; // 样式引用
+
+
+
+export default connect((state) => ({
+    listData: state.member.listData,
+}), {
+    memberListData: actions.memberListData,
+    changeHint: actions.changeHint,
+})(memberListContainer);
