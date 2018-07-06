@@ -1,0 +1,20 @@
+{
+  "code": 200,
+  "msg": "success",
+  "data": {
+    "code": 200,
+    "msg": "success",
+    "rows": [{
+      "money": 500.5,
+      "rechargeType": "人工充值",
+      "createTime": "2018-08-23"
+    },
+      {
+        "money": 200.5,
+        "rechargeType": "微信充值",
+        "createTime": "2018-08-09"
+      }],
+    "total": 2,
+    "data": 701.0
+  }
+}

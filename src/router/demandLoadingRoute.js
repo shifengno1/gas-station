@@ -16,6 +16,7 @@ import loginRoute from './loginRoute';
 import registrationRoute from './registrationRoute';
 import repairRoute from './repairRoute';
 import suggestionRoute from './suggestionRoute';
+import rechargeListRoute from './rechargeListRoute';
 
 const demandLoadingRoute = {
     path: '/',
@@ -33,6 +34,7 @@ const demandLoadingRoute = {
         registrationRoute,
         repairRoute,
         suggestionRoute,
+        rechargeListRoute,
     ],
     indexRoute: {
         component: Index,

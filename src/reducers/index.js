@@ -9,6 +9,7 @@ import member from './memberListReducer';
 import study22 from './study22Reducer';
 import login from './loginReducer';
 import repair from './repairReducer';
+import recharge from './rechargeListReducer';
 
 export default {
     detail,
@@ -19,4 +20,5 @@ export default {
     study22,
     login,
     repair,
+    recharge,
 };
