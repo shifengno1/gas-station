@@ -1,0 +1,9 @@
+diff a/src/reducers/suggestionReducer.js b/src/reducers/suggestionReducer.js	(rejected hunks)
+@@ -2,7 +2,6 @@
+ import { createReducer } from '../lib/common';
+ 
+ const defaultState = {
+-    // listData: {},
+     code: '',
+ };
+ 

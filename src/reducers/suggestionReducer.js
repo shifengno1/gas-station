@@ -2,6 +2,8 @@ import * as constant from '../configs/actions';
 import { createReducer } from '../lib/common';
 
 const defaultState = {
+    // hint: 'init',
+    // listData: {},
     code: '',
 };
 
