@@ -6,6 +6,16 @@ import 'antd-mobile/dist/antd-mobile.css';
 import actions from '../../actions/memberListAction';
 import './memberListContainer.pcss'; // 样式引用
 
+function MyBody(props) {
+    return (
+        <div>
+            <p><span>月份</span> <input type="text" value="2018-06" /></p>
+            <div className="am-list-body my-body">
+                {props.children}
+            </div>
+        </div>
+    );
+}
 
 class memberListContainer extends Component {
     constructor(props) {
@@ -71,7 +81,6 @@ class memberListContainer extends Component {
                 hasData = false;
             }
             this.state.rowsData = this.state.rowsData.concat(listData.rows);
-            console.log('rowsData', this.state.rowsData);
             this.setState({
                 isLoading: false,
                 dataSource: this.state.dataSource.cloneWithRows(this.state.rowsData),
@@ -82,17 +91,19 @@ class memberListContainer extends Component {
     render() {
         return (
             <ListView
+                ref={el => this.lv = el}
                 dataSource={this.state.dataSource}
                 renderHeader={() => (
                     <div>
-                        <div>充值流水列表</div>
+                        <p>充值流水列表</p>
                     </div>
                 )}
                 renderFooter={() => (
-                    <div style={{ padding: 10, textAlign: 'center' }}>
-                        {this.state.isLoading ? 'Loading...' : 'Loaded'}
-                    </div>
+                    () => (<div style={{ padding: 10, textAlign: 'center' }}>
+                        { this.state.hasMore ? this.state.isLoading ? '正在加载...' : '上拉加载' : '没有数据了' }
+                    </div>)
                 )}
+                renderBodyComponent={() => <MyBody />}
                 renderRow={(rowData, sectionID, rowID) => {
                     return (
                         <div key={rowID} style={{ padding: 10 }}>
