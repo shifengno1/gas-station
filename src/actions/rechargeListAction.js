@@ -6,15 +6,15 @@ import thunk from '../lib/thunk';
 
 export default {
     rechargeListData: (param) => thunk({
-        url: '/recharge/list',
+        url: 'gas/member/list',
         param: {
-            MemberId: param.MemberId,
-            item:param.item,
-            time:param.time,
-            pageNo:param.pageNo,
-            pageSize:param.pageSize,
+            operatorId: param.operatorId,
+            item: param.item,
+            time: param.time,
+            pageNo: param.pageNo,
+            pageSize: param.pageSize,
         },
-        method: 'post',
+        method: 'get',
         type: constant.RECHARGE_LIST_DATA,
     }),
 };
