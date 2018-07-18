@@ -1,115 +1,150 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { ListView } from 'antd-mobile';
+import { ListView, PullToRefresh } from 'antd-mobile';
 import { StickyContainer, Sticky } from 'react-sticky';
 import 'antd-mobile/dist/antd-mobile.css';
 import actions from '../../actions/rechargeListAction';
-import Waiting from '../../components/Waiting/Waiting';
-import './rechargeListContainer.pcss'; // 样式引用
+// import Waiting from '../../components/Waiting/Waiting';
+import './memberListContainer.pcss'; // 样式引用
+
+function MyBody(props) {
+    return (
+        <div>
+            <p><span>月份</span> <input type="text" value="2018-08" /></p>
+            <p style={{ borderTop: '1px solid grey', paddingTop: '2px' }}><span>总额</span>2000</p>
+            <div className="am-list-body my-body">
+                {props.children}
+            </div>
+        </div>
+    );
+}
 
 class rechargeListContainer extends React.Component {
     constructor(props) {
         super(props);
-        const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
+        this.onEndReached = this.onEndReached.bind(this);
+        const dataSource = new ListView.DataSource({
+            rowHasChanged: (row1, row2) => row1 !== row2,
+        });
+
+        // this.initData = [];
+        // for (let i = 0; i < 20; i++) {
+        //    this.initData.push(`r${i}`);
+        // }
         this.state = {
-            dataSource: ds,
-            waiting: false,
+            dataSource: dataSource.cloneWithRows([]),
+            refreshing: false,
+            isLoading: false,
+            hasMore: true,
+            rowsData: [],
+            allMoney: '',
         };
     }
 
     // 返回记录滚动位置三件套1-针对切换Tab情况：
-    componentDidMount() {
-        // 首屏初始数据
+    async componentDidMount() {
         if (this.props.listData.rows.length === 0) {
-            this.getList();
+            await this.getList();
         }
     }
-
-    // 优化性能，避免多次重复渲染，只根据关心的数据选择是否渲染,这里比较随意
-    shouldComponentUpdate(nextProps, nextState) {
-        return (!nextProps.listData.rows || this.props.listData.rows.length !== nextProps.listData.rows.length)
-            || (this.props.listData.pageNo !== nextProps.listData.pageNo);
+    async onEndReached() {
+        // load new data
+        // hasMore: from backend data, indicates whether it is the last page, here is false
+        if (this.state.isLoading && !this.state.hasMore) {
+            return;
+        }
+        await this.getList(this.props.listData.pageNo + 1);
     }
-
-    async getList(pageNo = 0) {
+    async onRefresh() {
+        console.log('onRefresh');
+        await this.getList(this.props.listData.pageNo + 1);
+    }
+    getList(num = 0) {
+        console.log('gitList:', num);
         const { rechargeListData } = this.props;
-        this.setState({
-            waiting: true,
-        });
-        await rechargeListData({
-            operatorId: '1',
-            item: '11',
-            time: '2018-06',
-            pageNo: 0,
-            pageSize: '3',
-        });
         const { listData } = this.props;
-        console.log(listData);
-        this.setState({
-            waiting: false,
-            dataSource: this.state.dataSource.cloneWithRows(listData.rows),
-        });
-    }
-
-    // ListView 稍微复杂 看不懂的去这里 https://mobile.ant.design/components/list-view/ 然后再去这里 http://www.jianshu.com/p/1293bb8ac969
-    render() {
-        const { listData } = this.props;
-        if (listData.rows.length === 0) {
-            console.log('渲染Loading页面');
-            return (
-                <Waiting height={`${window.innerHeight - 285}px`} />
-            );
+        if (this.state.isLoading || listData.total < listData.startOfPage + listData.pageSize) {
+            return;
         }
-        const separator = (rowID) => (
-            <div
-                key={`separator-${rowID}`}
-                style={{
-                    backgroundColor: '#F5F5F9',
-                    height: '0.1rem',
-                    borderTop: '1px solid #ECECED',
-                    borderBottom: '1px solid #ECECED',
-                }}
-            />
-        );
-        const row = (rowData, rowID) => {
-            return (
-                <div style={{ height: 200 }}>
-                    <p>{rowData.name}</p>
-                    {rowData.icCardNum}
-                </div>
-            );
-        };
-        console.log('主页渲染了一次');
+        this.setState({
+            isLoading: true,
+        });
+        rechargeListData({
+            memberId: '12',
+            time: '2018-08',
+            pageNo: num,
+            pageSize: '10',
+        });
+        this.showList();
+    }
+    showList() {
+        setTimeout(() => {
+            const { listData } = this.props;
+            let hasData = true;
+            if (listData.rows.length === 0) {
+                hasData = false;
+            }
+            this.state.rowsData = this.state.rowsData.concat(listData.rows);
+            this.setState({
+                isLoading: false,
+                dataSource: this.state.dataSource.cloneWithRows(this.state.rowsData),
+                hasMore: hasData,
+            });
+        }, 500);
+    }
+    render() {
         return (
-            <div>
-                <div style={{ margin: '0 auto', width: '100%' }}>
-                    <ListView
-                        dataSource={this.state.dataSource}
-                        renderFooter={() => (
-                            <div style={{ padding: 30, textAlign: 'center' }}>
-                                {this.state.waiting ? 'Loading...' : 'Loaded'}
+            <ListView
+                ref={el => this.lv = el}
+                dataSource={this.state.dataSource}
+                renderHeader={() => (
+                    <div>
+                        <p>充值流水列表</p>
+                    </div>
+                )}
+                renderFooter={() => (
+                    () => (<div style={{ padding: 10, textAlign: 'center' }}>
+                        { this.state.hasMore ? this.state.isLoading ? '正在加载...' : '上拉加载' : '没有数据了' }
+                    </div>)
+                )}
+                renderBodyComponent={() => <MyBody />}
+                renderRow={(rowData, sectionID, rowID) => {
+                    return (
+                        <div key={rowID} style={{ padding: 10 }}>
+                            <div>
+                                <p><span>充值金额：</span>{rowData.money}</p>
+                                <p><span>充值方式：</span>{rowData.rechargeType}</p>
+                                <p><span>充值时间：</span>{rowData.createTime}</p>
                             </div>
-                        )}
-                        renderRow={(rowData, sectionId, rowId) => row(rowData, rowId)}
-                        renderSeparator={(sectionId, rowId) => separator(rowId)}
-                        pageSize={3}
-                        scrollRenderAheadDistance={200}
-                        scrollEventThrottle={20}
-                        onEndReachedThreshold={10}
-                        onEndReached={(e) => {
-                            if (!e) return;
-                            const pageNo = listData.pageNo + 1;
-                            this.getList(pageNo);
-                        }}
-                    />
-                </div>
-            </div>
+                        </div>
+                    );
+                }}
+                renderSeparator={(sectionID, rowID) => (
+                    <div key={`${sectionID}-${rowID}`} style={{ backgroundColor: '#F5F5F9', height: 8 }} />
+                )}
+                initialListSize={10}
+                pageSize={10}
+                scrollRenderAheadDistance={200}
+                scrollEventThrottle={20}
+                onEndReached={this.onEndReached}
+                onEndReachedThreshold={100}
+                style={{
+                    height: document.body.clientHeight,
+                }}
+                contentContainerStyle={{ position: 'relative' }}
+                // scrollerOptions={{ scrollbars: true }}
+                pullToRefresh={<PullToRefresh
+                    refreshing={this.state.refreshing}
+                    onRefresh={this.onRefresh}
+                />}
+            />
         );
     }
 }
 
 export default connect((state) => ({
     listData: state.recharge.listData,
+    allMoney: state.recharge.allMoney,
 }), {
     rechargeListData: actions.rechargeListData,
 })(rechargeListContainer);
