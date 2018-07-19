@@ -10,6 +10,7 @@ import study22 from './study22Reducer';
 import login from './loginReducer';
 import repair from './repairReducer';
 import recharge from './rechargeListReducer';
+import oilInit from './oilInitReducer';
 
 export default {
     detail,
@@ -21,4 +22,5 @@ export default {
     login,
     repair,
     recharge,
+    oilInit,
 };
