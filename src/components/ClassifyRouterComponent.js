@@ -3,6 +3,7 @@
  */
 import React, { Component } from 'react';
 import { Link } from 'react-router';
+import personalPageRoute from '../router/personalPageRoute';
 
 export default class ClassifyRouterComponent extends Component {
     render() {
@@ -22,6 +23,7 @@ export default class ClassifyRouterComponent extends Component {
                     <li><Link to="/repair">repair</Link></li>
                     <li><Link to="/suggestion">suggestion</Link></li>
                     <li><Link to="/rechargeList">充值流水</Link></li>
+                    <li><Link to="/personalPage">个人中心</Link></li>
                 </ul>
                 { this.props.children }
             </div>
