@@ -19,6 +19,7 @@ import suggestionRoute from './suggestionRoute';
 import personalPageRoute from './personalPageRoute';
 import rechargeListRoute from './rechargeListRoute';
 import oilInitRoute from './oilInitRoute';
+import guideRoute from './guideRoute';
 
 const demandLoadingRoute = {
     path: '/',
@@ -39,6 +40,7 @@ const demandLoadingRoute = {
         personalPageRoute,
         rechargeListRoute,
         oilInitRoute,
+        guideRoute,
     ],
     indexRoute: {
         component: Index,
