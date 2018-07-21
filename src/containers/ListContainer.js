@@ -4,26 +4,36 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import actions from '../actions/listAction';
+import IndexList from '../components/List/IndexList';
 
 class ListContainer extends Component {
 
     constructor(props) {
         super(props);
-        this.getData = this.getData.bind(this);
+        this.state = {
+            data: '',
+        };
     }
 
-    getData() {
-        const { fetchData } = this.props;
-        fetchData();
+    componentDidMount() {
+        const context = require.context('../../mock-server/api', true, /\.js(on)?$/);
+        let responseData = null;
+        try {
+            responseData = context('./list.json');
+            this.setState({
+                data: responseData,
+            });
+        } catch (e) {
+            throw new Error('404 Not Found');
+        }
     }
 
     render() {
-        const { data, id } = this.props;
+        const { data } = this.state;
         return (
-            <div>
+            <div style={{ background: '#F2F2F2 ' }}>
                 <button onClick={this.getData}>发起请求</button>
-                <div>{JSON.stringify(data)}</div>
-                <h1>{id}</h1>
+                <IndexList noMore={true} progress={false} listData={data.data} />
             </div>
         );
     }

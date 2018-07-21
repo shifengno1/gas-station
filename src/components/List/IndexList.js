@@ -13,48 +13,26 @@ import IMG_SRC2 from './img/rectangle.png';
 export default class IndexList extends Component {
     constructor(props) {
         super(props);
-        this.onClick = this.onClick.bind(this);
-        this.onShow = this.onShow(this);
+        this.state = {
+            display: [],
+            theme: 'dp',
+        };
         this.statusMap = {
             1: '待确认',
             2: '已确认',
             3: '被驳回',
             4: '商家驳回',
         };
-        this.onShow = this.onShow;
-        this.state = {
-            display: [],
-            theme: 'dp',
-        };
-    }
-    onClick({ contractId = ''}) { //eslint-disable-line
-        return () => {
-            // location.href = `${config.getCommonUrl()}/contract-detail.html?contractId=${contractId}`;
-            console.log('点击了');
-        };
-    }
-    onShow(index) { //eslint-disable-line
-        console.log(index);
-        const { listData, progress, noMore } = this.props;
-        const { display } = this.state;
-        if (!display[index]) {
-            display[index] = true;
-        } else {
-            display[index] = false;
-        }
-        this.setState({
-            display,
-        });
     }
     render() {
-        const { listData, progress, noMore } = this.props;
+        const { listData = [], progress, noMore } = this.props;
         let _this = this;//eslint-disable-line
         const { display, theme } = this.state;
         return (
             <div className={'content'}>
                 {
                    listData.length !== 0 && listData.map((item, index) =>
-                       (<div className={'content-list'} key={index} onClick={this.onClick(item)}>
+                       (<div className={'content-list'} key={index}>
                            <div className={'list-title'}>
                                <div className={'title-name'}>
                                    {`协议编号：${item.contractNo}`}
@@ -91,7 +69,7 @@ export default class IndexList extends Component {
                                    </div>
                                </div>
                                {
-                                   ((item.status === 3 || item.status === 4) && item.rejectReason !== '' && item.rejectReason != null) && <div onClick={(e) => { e.stopPropagation(); return this.onShow(index); }} className={`refuse-dis ${display[index] ? '' : 'refuse-dis-all'}`}>
+                                   ((item.status === 3 || item.status === 4) && item.rejectReason !== '' && item.rejectReason != null) && <div className="refuse-dis">
                                        驳回说明：{item.rejectReason}
                                    </div>
                                }
