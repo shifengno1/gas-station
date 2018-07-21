@@ -5,13 +5,6 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import actions from '../actions/listAction';
 
-// @connect((state) => ({
-//     data: state.list.data,
-//     id: state.list.id,
-// }), {
-//     fetchData: actions.fetchData,
-// })
-
 class ListContainer extends Component {
 
     constructor(props) {
