@@ -3,13 +3,13 @@
  */
 // import ListContainer from '../src/containers/ListContainer';
 
-const memberListRoute = {
-    path: '/memberList',
+const rechargeInitRoute = {
+    path: '/rechargeInit',
     getComponents(nextState, callback) {
         require.ensure([], (require) => {
-            callback(null, require('../containers/memberListContainer/memberListContainer.js').default);
+            callback(null, require('../containers/rechargeInitContainer/rechargeInitContainer.js').default);
         });
     },
 };
 
-export default memberListRoute;
+export default rechargeInitRoute;

@@ -12,7 +12,7 @@ export default (url) => {
         // case env.DEVELOPMENT:
         //     return `.${url}.json`;
         case env.DEVELOPMENT:
-            return `http://47.96.143.12:8080/${url}`;
+            return `http://47.96.143.12/${url}`;
         default:
             return null;
     }

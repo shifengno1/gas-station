@@ -20,6 +20,7 @@ import personalPageRoute from './personalPageRoute';
 import rechargeListRoute from './rechargeListRoute';
 import oilInitRoute from './oilInitRoute';
 import oiltankStockRoute from './oiltankStockRoute';
+import rechargeInitRoute from './rechargeInitRoute';
 import guideRoute from './guideRoute';
 
 const demandLoadingRoute = {
@@ -42,6 +43,7 @@ const demandLoadingRoute = {
         rechargeListRoute,
         oilInitRoute,
         oiltankStockRoute,
+        rechargeInitRoute,
         guideRoute,
     ],
     indexRoute: {

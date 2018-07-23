@@ -6,6 +6,7 @@ import 'antd-mobile/dist/antd-mobile.css';
 import actions from '../../actions/memberListAction';
 import './memberListContainer.pcss'; // 样式引用
 
+let meberRows = [];
 function MyBody(props) {
     return (
         <div>
@@ -30,32 +31,27 @@ class memberListContainer extends Component {
         //    this.initData.push(`r${i}`);
         // }
         this.state = {
-            dataSource: dataSource.cloneWithRows([]),
+            dataSource: dataSource.cloneWithRows(meberRows),
             refreshing: false,
             isLoading: false,
             hasMore: true,
-            rowsData: [],
         };
     }
     async componentDidMount() {
-        if (this.props.listData.rows.length === 0) {
-            await this.getList();
-        }
+        await this.getList();
     }
-    async onEndReached() {
+    async onEndReached(event) {
         // load new data
         // hasMore: from backend data, indicates whether it is the last page, here is false
-        if (this.state.isLoading && !this.state.hasMore) {
+        if (this.state.isLoading || !this.state.hasMore) {
             return;
         }
         await this.getList(this.props.listData.pageNo + 1);
     }
     async onRefresh() {
-        console.log('onRefresh');
         await this.getList(this.props.listData.pageNo + 1);
     }
     getList(num = 0) {
-        console.log('gitList:', num);
         const { memberListData } = this.props;
         const { listData } = this.props;
         if (this.state.isLoading || listData.total < listData.startOfPage + listData.pageSize) {
@@ -80,10 +76,11 @@ class memberListContainer extends Component {
             if (listData.rows.length === 0) {
                 hasData = false;
             }
-            this.state.rowsData = this.state.rowsData.concat(listData.rows);
+            meberRows = meberRows.concat(listData.rows);
+            // meberRows = listData.rows;
             this.setState({
                 isLoading: false,
-                dataSource: this.state.dataSource.cloneWithRows(this.state.rowsData),
+                dataSource: this.state.dataSource.cloneWithRows(meberRows),
                 hasMore: hasData,
             });
         }, 500);

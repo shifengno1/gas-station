@@ -11,6 +11,7 @@ import login from './loginReducer';
 import repair from './repairReducer';
 import recharge from './rechargeListReducer';
 import oilInit from './oilInitReducer';
+import rechargeInit from './rechargeInitReducer';
 
 export default {
     detail,
@@ -23,4 +24,5 @@ export default {
     repair,
     recharge,
     oilInit,
+    rechargeInit,
 };
