@@ -19,12 +19,9 @@ import suggestionRoute from './suggestionRoute';
 import personalPageRoute from './personalPageRoute';
 import rechargeListRoute from './rechargeListRoute';
 import oilInitRoute from './oilInitRoute';
-<<<<<<< HEAD
 import rechargeInitRoute from './rechargeInitRoute';
-=======
 import guideRoute from './guideRoute';
 
->>>>>>> 02a6a79d3b64a91ea32b4f497d2a29bb1073309f
 const demandLoadingRoute = {
     path: '/',
     component: ClassifyRouterComponent,
@@ -44,11 +41,8 @@ const demandLoadingRoute = {
         personalPageRoute,
         rechargeListRoute,
         oilInitRoute,
-<<<<<<< HEAD
         rechargeInitRoute,
-=======
         guideRoute,
->>>>>>> 02a6a79d3b64a91ea32b4f497d2a29bb1073309f
     ],
     indexRoute: {
         component: Index,
