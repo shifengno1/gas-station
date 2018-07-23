@@ -2,51 +2,70 @@
   "code": 200,
   "msg": "success",
   "data": [
-      {
-          "moduleId": 1,
-          "moduleType": "A",
-          "indicators":[{
-              "indicatorName": "总发布额",
-              "indicatorValue": "￥1,234,97,232",
-              "ratio": "￥1,000",
-              "trend": "up",
-              "rate": 1.23,
-              "target": "￥2,1231,232,234"
-          }]
-      },
-      {
-          "moduleId": 1,
-          "moduleType": "A",
-          "indicators":[{
-              "indicatorName": "展示广告收款项",
-              "indicatorValue": "￥1,123,123,1232",
-              "ratio": "￥1,234",
-              "trend": "down",
-              "rate": 1.35,
-              "target": "￥2,1231"
-          }]
-      },
-      {
-          "moduleId": 2,
-          "moduleType": "B",
-          "indicators":[
-              {
-                  "indicatorName": "新开门店数",
-                  "indicatorValue": "7,654",
-                  "ratio": "1,234",
-                  "trend": "up",
-                  "rate": "",
-                  "target":""
-              },
-              {
-                  "indicatorName": "当日在线门店数",
-                  "indicatorValue": "200",
-                  "ratio": "20",
-                  "trend": "down",
-                  "rate": "",
-                  "target":""
-              }
-          ]
-      }
-  ]
+        {
+            "contractId": 123123,
+            "contractNo": "23423424234",
+            "status": 1,
+            "partyA": "张三-66533344667313634这是一个四是佛鳄擦吗",
+            "partyB": "互诚信息技术（上海）有限公司",
+            "bussinessType": "推广",
+            "validDate": "2017.05.12-2018.05.12",
+            "rejectReason": "",
+            "certification": 1,
+            "needConfirm": true,
+            "validQualification": true
+        },
+        {
+            "contractId": 123123,
+            "contractNo": "23423424234",
+            "status": 2,
+            "partyA": "包身份-150001231203-9213082014972819",
+            "partyB": "互诚信息技术（上海）有限公司",
+            "bussinessType": "推广",
+            "validDate": "2017.05.12-2018.05.12",
+            "rejectReason": "",
+            "certification": 1,
+            "needConfirm": true,
+            "validQualification": true
+        },
+        {
+            "contractId": 123123,
+            "contractNo": "23423424234",
+            "status": 3,
+            "partyA": "张三-66533344667313634",
+            "partyB": "互诚信息技术（上海）有限公司",
+            "bussinessType": "推广",
+            "validDate": "2017.05.12-2018.05.12",
+            "rejectReason": "这个不好所以被驳回这个是为确认数据所数据很长所以数据很长所以数据很长数据很长，所以数据很长很长",
+            "certification": 1,
+            "needConfirm": true,
+            "validQualification": true
+        },
+        {
+            "contractId": 123123,
+            "contractNo": "23423424234",
+            "status": 4,
+            "partyA": "张三-66533344667313634",
+            "partyB": "互诚信息技术（上海）有限公司",
+            "bussinessType": "推广",
+            "validDate": "2017.05.12-2018.05.12",
+            "rejectReason": "这个是为确认数据所数据很长所以数据很长所以数据很长数据很长，所以数据很长很长",
+            "certification": 1,
+            "needConfirm": true,
+            "validQualification": true
+        },
+        {
+            "contractId": 123123,
+            "contractNo": "23423424234",
+            "status": 5,
+            "partyA": "张三-66533344667313634",
+            "partyB": "互诚信息技术（上海）有限公司",
+            "bussinessType": "推广",
+            "validDate": "2017.05.12-2018.05.12",
+            "rejectReason": "",
+            "certification": 1,
+            "needConfirm": true,
+            "validQualification": true
+        }
+    ]
 }

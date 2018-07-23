@@ -22,12 +22,6 @@ class PersonalPageContainer extends Component {
         // const;
         return (
             <div className="content-wrapper">
-                <div className="title">
-                    <div>
-                        <img src={require('./i/icon-back2.png')} alt={'返回1'} className="imgSize2" />
-                    </div>
-                    <div className="title-center">会员中心</div>
-                </div>
                 <div className="release-wrapper">
                     <img src={require('./i/icn_crown.png')} alt={'aaa'} className="imgSize" style={{ paddingTop: '0' }} />
                 </div>
