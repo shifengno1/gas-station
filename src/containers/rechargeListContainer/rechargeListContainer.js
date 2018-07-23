@@ -95,7 +95,7 @@ class rechargeListContainer extends React.Component {
     render() {
         return (
             <ListView
-                ref={el => this.lv = el}
+                ref={(el) => this.lv = el}
                 dataSource={this.state.dataSource}
                 renderHeader={() => (
                     <div>
