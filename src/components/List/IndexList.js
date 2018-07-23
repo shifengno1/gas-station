@@ -35,7 +35,7 @@ export default class IndexList extends Component {
                        (<div className={'content-list'} key={index}>
                            <div className={'list-title'}>
                                <div className={'title-name'}>
-                                   {`协议编号：${item.contractNo}`}
+                                   {`协议：${item.contractNo}`}
                                </div>
                                <div className={'title-state'}>
                                    {_this.statusMap[item.status]}

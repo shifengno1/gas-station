@@ -21,7 +21,7 @@ class ListContainer extends Component {
         try {
             responseData = context('./list.json');
             this.setState({
-                data: responseData,
+                data: responseData.data,
             });
         } catch (e) {
             throw new Error('404 Not Found');
@@ -33,7 +33,7 @@ class ListContainer extends Component {
         return (
             <div style={{ background: '#F2F2F2 ' }}>
                 <button onClick={this.getData}>发起请求</button>
-                <IndexList noMore={true} progress={false} listData={data.data} />
+                <IndexList noMore={true} progress={false} listData={data} />
             </div>
         );
     }
