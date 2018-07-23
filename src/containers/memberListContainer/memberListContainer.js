@@ -30,7 +30,7 @@ class memberListContainer extends Component {
         //    this.initData.push(`r${i}`);
         // }
         this.state = {
-            dataSource: dataSource.cloneWithRows([]),
+            dataSource: dataSource.cloneWithRows(this.state.rowsData),
             refreshing: false,
             isLoading: false,
             hasMore: true,
