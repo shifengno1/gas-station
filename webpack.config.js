@@ -2,9 +2,9 @@
  * Created by chenqu on 2017/7/25.
  */
 const path = require('path');
-const webpack = require('../../../Library/Caches/typescript/2.9/node_modules/@types/webpack');
-const HtmlWebpackPlugin = require('../../../Library/Caches/typescript/2.9/node_modules/@types/html-webpack-plugin');
-const CleanWebpackPlugin = require('../../../Library/Caches/typescript/2.9/node_modules/@types/clean-webpack-plugin');
+const webpack = require('webpack');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const CleanWebpackPlugin = require('clean-webpack-plugin');
 const PostcssImport = require('postcss-import');
 const precss = require('precss');
 const cssnext = require('postcss-cssnext');
