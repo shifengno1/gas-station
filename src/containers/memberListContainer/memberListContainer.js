@@ -230,7 +230,7 @@ class memberListContainer extends Component {
                                        手机
                                    </div>
                                    <div className={'list-item-dis'}>
-                                       {rowData.createTime}
+                                       {rowData.phone}
                                    </div>
                                </div>
                            </div>
