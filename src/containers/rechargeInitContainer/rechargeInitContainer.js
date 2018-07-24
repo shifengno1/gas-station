@@ -55,7 +55,7 @@ class rechargeInitContainer extends Component {
                     <ul className="money_list" id="money_list">
                         <li className="money" value="200">200元</li>
                         <li className="money" value="500">500元</li>
-                        <li className="money" value="1000">1000元</li>
+                        <li className="money" value="800">800元</li>
                     </ul>
                     <div className="desc">
                         <p>充值规则说明：</p>
