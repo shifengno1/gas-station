@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Picker, List, ListView, PullToRefresh } from 'antd-mobile';
+import { Button, InputItem, DatePicker, List, ListView, PullToRefresh } from 'antd-mobile';
 import { StickyContainer, Sticky } from 'react-sticky';
 import 'antd-mobile/dist/antd-mobile.css';
 import actions from '../../actions/memberListAction';
@@ -8,68 +8,7 @@ import './memberListContainer.pcss'; // 样式引用
 import '../../components/List/IndexList.pcss';
 
 let meberRows = [];
-const months = [
-    [
-        {
-            label: '2018',
-            value: '2018',
-        },
-        {
-            label: '2019',
-            value: '2019',
-        },
-    ],
-    [
-        {
-            label: '1月',
-            value: '01',
-        },
-        {
-            label: '2月',
-            value: '02',
-        },
-        {
-            label: '3月',
-            value: '03',
-        },
-        {
-            label: '4月',
-            value: '04',
-        },
-        {
-            label: '5月',
-            value: '05',
-        },
-        {
-            label: '6月',
-            value: '06',
-        },
-        {
-            label: '7月',
-            value: '07',
-        },
-        {
-            label: '8月',
-            value: '08',
-        },
-        {
-            label: '9月',
-            value: '09',
-        },
-        {
-            label: '10月',
-            value: '10',
-        },
-        {
-            label: '11月',
-            value: '11',
-        },
-        {
-            label: '12月',
-            value: '12',
-        },
-    ],
-];
+
 function CustomChildren(props) {
     return (
         <div
@@ -92,11 +31,17 @@ function MyBody(props) {
         </div>
     );
 }
-
+function formatDate(date) {
+    /* eslint no-confusing-arrow: 0 */
+    const pad = n => n < 10 ? `0${n}` : n;
+    const monthStr = `${date.getFullYear()}-${pad(date.getMonth() + 1)}`;
+    return `${monthStr}`;
+}
 class memberListContainer extends Component {
     constructor(props) {
         super(props);
         this.onEndReached = this.onEndReached.bind(this);
+        this.queryByCons = this.queryByCons.bind(this);
         const dataSource = new ListView.DataSource({
             rowHasChanged: (row1, row2) => row1 !== row2,
         });
@@ -106,12 +51,15 @@ class memberListContainer extends Component {
             refreshing: false,
             isLoading: false,
             hasMore: true,
-            sValue: ['2018', '07'],
+            sDate: '2018-07',
+            item: '11',
         };
     }
+
     async componentDidMount() {
         await this.getList();
     }
+
     async onEndReached(event) {
         // load new data
         // hasMore: from backend data, indicates whether it is the last page, here is false
@@ -120,27 +68,41 @@ class memberListContainer extends Component {
         }
         await this.getList(this.props.listData.pageNo + 1);
     }
+
     async onRefresh() {
         await this.getList(this.props.listData.pageNo + 1);
     }
+
     getList(num = 0) {
         const { memberListData } = this.props;
         const { listData } = this.props;
-        if (this.state.isLoading || listData.total < listData.startOfPage + listData.pageSize) {
+        if (this.state.isLoading) {
             return;
+        } else if (num > 0) {
+            if (listData.total < listData.startOfPage + listData.pageSize) {
+                return;
+            }
         }
+
         this.setState({
             isLoading: true,
         });
+        const timeStr = this.state.sDate.concat('', '-01');
         memberListData({
             operatorId: '1',
-            item: '11',
-            time: '2018-06',
+            item: this.state.item,
+            time: timeStr,
             pageNo: num,
             pageSize: '10',
         });
         this.showList();
     }
+
+    queryByCons(event) {
+        meberRows = [];
+        this.getList();
+    }
+
     showList() {
         setTimeout(() => {
             const { listData } = this.props;
@@ -157,23 +119,46 @@ class memberListContainer extends Component {
             });
         }, 500);
     }
+
     render() {
         return (
             <div>
                 <List style={{ backgroundColor: 'white' }} className="picker-list">
-                    <Picker
-                        data={months}
-                        title="选择月份"
-                        cascade={false}
-                        extra="请选择(必选)"
-                        value={this.state.sValue}
-                        onChange={v => this.setState({ sValue: v })}
-                        onOk={v => this.setState({ sValue: v })}
+                    <List.Item
+                        extra={<Button
+                            type="primary"
+                            onClick={this.queryByCons}
+                            size="small"
+                            inline
+                        >
+                             查询
+                        </Button>}
+                        multipleLine
                     >
-                        <List.Item arrow="horizontal">月份</List.Item>
-                    </Picker>
+                        <List.Item.Brief>
+                            <DatePicker
+                                mode="month"
+                                extra={this.state.sDate}
+                                onChange={date => {
+                                    this.setState({
+                                        sDate: formatDate(date),
+                                    });
+                                }}
+                            >
+                                <List.Item arrow="horizontal">月份</List.Item>
+                            </DatePicker>
+                            <InputItem
+                                placeholder="请输入姓名、卡号、手机号"
+                                onChange={val =>
+                                this.setState({
+                                    item: val,
+                                })}
+                            />
+                        </List.Item.Brief>
+                    </List.Item>
                 </List>
-                <ListView className={'content'}
+                <ListView
+                    className={'content'}
                     ref={el => this.lv = el}
                     dataSource={this.state.dataSource}
                     renderHeader={() => (
@@ -190,51 +175,51 @@ class memberListContainer extends Component {
                     renderRow={(rowData, sectionID, rowID) => {
                         return (
                             <div className={'content-list'} key={rowID}>
-                           <div className={'list-title'}>
-                               <div className={'title-name'}>
-                                   姓名：{rowData.name}
-                               </div>
-                               <div className={'title-state'}>
-                                   {rowData.createTime}
-                               </div>
-                           </div>
-                           <div className={'list-content'}>
-                               <div className={'content-list-item'}>
-                                   <div className={'list-item-title'}>
-                                       卡号
-                                   </div>
-                                   <div className={'list-item-dis'}>
-                                       <div>
-                                           {rowData.icCardNum}
-                                       </div>
-                                   </div>
-                               </div>
-                               <div className={'content-list-item'}>
-                                   <div className={'list-item-title'}>
-                                       余额
-                                   </div>
-                                   <div className={'list-item-dis'}>
-                                       {rowData.cardSum}
-                                   </div>
-                               </div>
-                               <div className={'content-list-item'}>
-                                   <div className={'list-item-title'}>
-                                       车牌
-                                   </div>
-                                   <div className={'list-item-dis'}>
-                                       {rowData.plateNumber}
-                                   </div>
-                               </div>
-                               <div className={'content-list-item'}>
-                                   <div className={'list-item-title'}>
-                                       手机
-                                   </div>
-                                   <div className={'list-item-dis'}>
-                                       {rowData.phone}
-                                   </div>
-                               </div>
-                           </div>
-                       </div>
+                                <div className={'list-title'}>
+                                    <div className={'title-name'}>
+                                       姓名：{rowData.name}
+                                    </div>
+                                    <div className={'title-state'}>
+                                        {rowData.createTime}
+                                    </div>
+                                </div>
+                                <div className={'list-content'}>
+                                    <div className={'content-list-item'}>
+                                        <div className={'list-item-title'}>
+                                           卡号
+                                        </div>
+                                        <div className={'list-item-dis'}>
+                                            <div>
+                                                {rowData.icCardNum}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div className={'content-list-item'}>
+                                        <div className={'list-item-title'}>
+                                           余额
+                                        </div>
+                                        <div className={'list-item-dis'}>
+                                            {rowData.cardSum}
+                                        </div>
+                                    </div>
+                                    <div className={'content-list-item'}>
+                                        <div className={'list-item-title'}>
+                                           车牌
+                                        </div>
+                                        <div className={'list-item-dis'}>
+                                            {rowData.plateNumber}
+                                        </div>
+                                    </div>
+                                    <div className={'content-list-item'}>
+                                        <div className={'list-item-title'}>
+                                           手机
+                                        </div>
+                                        <div className={'list-item-dis'}>
+                                            {rowData.phone}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         );
                     }}
                     renderSeparator={(sectionID, rowID) => (
