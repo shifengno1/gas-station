@@ -12,6 +12,7 @@ import repair from './repairReducer';
 import recharge from './rechargeListReducer';
 import oilInit from './oilInitReducer';
 import rechargeInit from './rechargeInitReducer';
+import oilTank from './oilTankReducer';
 
 export default {
     detail,
@@ -25,4 +26,5 @@ export default {
     recharge,
     oilInit,
     rechargeInit,
+    oilTank,
 };
