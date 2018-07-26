@@ -3,12 +3,11 @@ import { connect } from 'react-redux';
 import { Button, InputItem, DatePicker, List, ListView, PullToRefresh } from 'antd-mobile';
 import { StickyContainer, Sticky } from 'react-sticky';
 import 'antd-mobile/dist/antd-mobile.css';
-import actions from '../../actions/memberListAction';
-import './memberListContainer.pcss'; // 样式引用
+import actions from '../../actions/oilListAction';
+import './oilListContainer.pcss'; // 样式引用
 import '../../components/List/IndexList.pcss';
 
 let meberRows = [];
-
 function MyBody(props) {
     return (
         <div>
@@ -24,7 +23,7 @@ function formatDate(date) {
     const monthStr = `${date.getFullYear()}-${pad(date.getMonth() + 1)}`;
     return `${monthStr}`;
 }
-class memberListContainer extends Component {
+class myOilListContainer extends Component {
     constructor(props) {
         super(props);
         this.onEndReached = this.onEndReached.bind(this);
@@ -39,7 +38,6 @@ class memberListContainer extends Component {
             isLoading: false,
             hasMore: true,
             sDate: '2018-07',
-            item: '11',
         };
     }
 
@@ -60,8 +58,8 @@ class memberListContainer extends Component {
         await this.getList(this.props.listData.pageNo + 1);
     }
 
-    getList(num = 0) {
-        const { memberListData } = this.props;
+    getList(num = 0, time = this.state.sDate) {
+        const { oilListData } = this.props;
         const { listData } = this.props;
         if (this.state.isLoading) {
             return;
@@ -74,35 +72,40 @@ class memberListContainer extends Component {
         this.setState({
             isLoading: true,
         });
-        const timeStr = this.state.sDate.concat('', '-01');
-        memberListData({
-            operatorId: '1',
-            item: this.state.item,
-            time: timeStr,
+
+        oilListData({
+            memberId: '13',
+            time: time,
             pageNo: num,
             pageSize: '10',
         });
         this.showList();
     }
 
-    queryByCons(event) {
+    queryByCons(dateStr) {
+        this.setState({
+            sDate: dateStr,
+        });
         meberRows = [];
-        this.getList();
+        this.getList(0, dateStr);
     }
 
     showList() {
         setTimeout(() => {
             const { listData } = this.props;
+
             let hasData = true;
             if (listData.rows.length === 0) {
                 hasData = false;
             }
             meberRows = meberRows.concat(listData.rows);
-            // meberRows = listData.rows;
+
             this.setState({
                 isLoading: false,
                 dataSource: this.state.dataSource.cloneWithRows(meberRows),
                 hasMore: hasData,
+                oilSum: listData.data.oilSum,
+                moneySum: listData.data.moneySum,
             });
         }, 500);
     }
@@ -111,46 +114,23 @@ class memberListContainer extends Component {
         return (
             <div>
                 <List style={{ backgroundColor: 'white' }} className="picker-list">
-                    <List.Item
-                        extra={<Button
-                            type="primary"
-                            onClick={this.queryByCons}
-                            size="small"
-                            inline
-                        >
-                             查询
-                        </Button>}
-                        multipleLine
+                    <DatePicker
+                        mode="month"
+                        extra={this.state.sDate}
+                        onChange={date => {
+                            this.queryByCons(formatDate(date));
+                        }}
                     >
-                        <List.Item.Brief>
-                            <DatePicker
-                                mode="month"
-                                extra={this.state.sDate}
-                                onChange={date => {
-                                    this.setState({
-                                        sDate: formatDate(date),
-                                    });
-                                }}
-                            >
-                                <List.Item arrow="horizontal">月份</List.Item>
-                            </DatePicker>
-                            <InputItem
-                                placeholder="请输入姓名、卡号、手机号"
-                                onChange={val =>
-                                this.setState({
-                                    item: val,
-                                })}
-                            />
-                        </List.Item.Brief>
-                    </List.Item>
+                        <List.Item arrow="horizontal">月份</List.Item>
+                    </DatePicker>
                 </List>
                 <ListView
                     className={'content'}
                     ref={el => this.lv = el}
                     dataSource={this.state.dataSource}
                     renderHeader={() => (
-                        <div>
-                            <p>会员列表</p>
+                        <div className={'monthlyTotal'}>
+                            总计<span className={'monthlyColor'}> <i id="total_oil">{this.state.oilSum}</i> 升</span><span className={'monthlyColor'}>¥<i id="totle_money">{this.state.moneySum}</i> </span>
                         </div>
                     )}
                     renderFooter={() => (
@@ -164,45 +144,49 @@ class memberListContainer extends Component {
                             <div className={'content-list'} key={rowID}>
                                 <div className={'list-title'}>
                                     <div className={'title-name'}>
-                                       姓名：{rowData.name}
+                                       油站：{rowData.stationName}
                                     </div>
                                     <div className={'title-state'}>
-                                        {rowData.createTime}
+                                        ¥{rowData.cash}
                                     </div>
                                 </div>
                                 <div className={'list-content'}>
                                     <div className={'content-list-item'}>
                                         <div className={'list-item-title'}>
-                                           卡号
+                                           油罐
                                         </div>
                                         <div className={'list-item-dis'}>
                                             <div>
-                                                {rowData.icCardNum}
+                                                {rowData.tankNum}
                                             </div>
                                         </div>
                                     </div>
                                     <div className={'content-list-item'}>
                                         <div className={'list-item-title'}>
-                                           余额
+                                           品类
                                         </div>
                                         <div className={'list-item-dis'}>
-                                            {rowData.cardSum}
+                                            <div>
+                                                {rowData.oilType}
+                                            </div>
                                         </div>
                                     </div>
                                     <div className={'content-list-item'}>
                                         <div className={'list-item-title'}>
-                                           车牌
+                                           油量
                                         </div>
                                         <div className={'list-item-dis'}>
-                                            {rowData.plateNumber}
+                                            <div>
+                                                {rowData.oilSum}
+                                            </div>
                                         </div>
                                     </div>
                                     <div className={'content-list-item'}>
                                         <div className={'list-item-title'}>
-                                           手机
+                                           时间
                                         </div>
                                         <div className={'list-item-dis'}>
-                                            {rowData.phone}
+                                            {rowData.createTime}
                                         </div>
                                     </div>
                                 </div>
@@ -234,7 +218,7 @@ class memberListContainer extends Component {
 }
 
 export default connect((state) => ({
-    listData: state.member.listData,
+    listData: state.myOilList.listData,
 }), {
-    memberListData: actions.memberListData,
-})(memberListContainer);
+    oilListData: actions.myOilListData,
+})(myOilListContainer);

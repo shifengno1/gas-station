@@ -29,3 +29,5 @@ export const OIL_INIT_DATA = 'OIL_INIT_DATA';
 export const RECHARGE_INIT_DATA = 'RECHARGE_INIT_DATA';
 
 export const OIL_TANK_DATA = 'OIL_TANK_DATA';
+export const OIL_LIST_DATA = 'OIL_LIST_DATA';
+export const MY_OIL_LIST_DATA = 'MY_OIL_LIST_DATA';
