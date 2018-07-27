@@ -84,7 +84,7 @@ class myStationContainer extends Component {
         return (
             <div>
                 <List style={{ backgroundColor: 'white' }} className="picker-list">
-                    <Map center={{ lng: 115.97, lat: 36.45 }} zoom="8">
+                    <Map center={{ lng: 117.122375, lat: 36.674386 }}  zoom="8">
                         <NavigationControl />
                         {listData.stationInfo.length !== 0 && listData.stationInfo.map((item, index) =>
                             (
