@@ -14,6 +14,7 @@ import oilInit from './oilInitReducer';
 import rechargeInit from './rechargeInitReducer';
 import oilList from './oilListReducer';
 import myOilList from './myOilListReducer';
+import myStation from './myStationReducer';
 
 export default {
     detail,
@@ -29,4 +30,5 @@ export default {
     rechargeInit,
     oilList,
     myOilList,
+    myStation,
 };

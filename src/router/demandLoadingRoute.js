@@ -24,6 +24,7 @@ import rechargeInitRoute from './rechargeInitRoute';
 import guideRoute from './guideRoute';
 import oilListRoute from './oilListRoute';
 import myOilListRoute from './myOilListRoute';
+import myStationRoute from './myStationRoute';
 
 const demandLoadingRoute = {
     path: '/',
@@ -49,6 +50,7 @@ const demandLoadingRoute = {
         guideRoute,
         oilListRoute,
         myOilListRoute,
+        myStationRoute,
     ],
     indexRoute: {
         component: Index,
