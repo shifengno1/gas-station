@@ -12,6 +12,7 @@ import repair from './repairReducer';
 import recharge from './rechargeListReducer';
 import oilInit from './oilInitReducer';
 import rechargeInit from './rechargeInitReducer';
+import oilTank from './oilTankReducer';
 import oilList from './oilListReducer';
 import myOilList from './myOilListReducer';
 import myStation from './myStationReducer';
@@ -28,6 +29,7 @@ export default {
     recharge,
     oilInit,
     rechargeInit,
+    oilTank,
     oilList,
     myOilList,
     myStation,
