@@ -30,6 +30,7 @@ export default class ClassifyRouterComponent extends Component {
                     <li><Link to="/oiltankStock">油罐库存</Link></li>
                     <li><Link to="/oilList">加油流水</Link></li>
                     <li><Link to="/myOilList">我的加油</Link></li>
+                    <li><Link to="/myStation">我的站点</Link></li>
                 </ul>
                 { this.props.children }
             </div>

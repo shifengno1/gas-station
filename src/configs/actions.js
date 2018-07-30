@@ -33,3 +33,4 @@ export const OIL_LIST_DATA = 'OIL_LIST_DATA';
 export const MY_OIL_LIST_DATA = 'MY_OIL_LIST_DATA';
 
 export const OIL_DETAIL_DATA = 'OIL_DETAIL_DATA';
+export const MY_STATION_DATA = 'MY_STATION_DATA';
