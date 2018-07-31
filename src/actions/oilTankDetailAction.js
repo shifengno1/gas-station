@@ -6,11 +6,11 @@ export default {
     oilDetailData: (param, callback) => thunk({
         url: 'gas//gasStock/inOut',
         param: {
-            stockId: 1,
+            stockId: '1',
             startDate: param.startDate,
             endDate: param.endDate,
-            pageNo: 0,
-            pageSize: 10,
+            pageNo: param.pageNo,
+            pageSize: param.pageSize,
         },
         type: constant.OIL_DETAIL_DATA,
     }),
