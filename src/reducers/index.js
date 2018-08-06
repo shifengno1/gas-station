@@ -17,6 +17,7 @@ import oilList from './oilListReducer';
 import myOilList from './myOilListReducer';
 import oilDetail from './oilDetailReducer';
 import myStation from './myStationReducer';
+import personalInfo from './personalInfoReducer';
 
 export default {
     detail,
@@ -35,4 +36,5 @@ export default {
     myOilList,
     oilDetail,
     myStation,
+    personalInfo,
 };
