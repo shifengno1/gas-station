@@ -8,7 +8,7 @@ export default class VIPCard extends Component {
         super(props);
         this.toDiscountPage = this.toDiscountPage.bind(this);
         this.toMyVIPCardPage = this.toMyVIPCardPage.bind(this);
-        this.toPersonalPage = this.toPersonalPage.bind(this);
+        this.toPersonalInfo = this.toPersonalInfo.bind(this);
         this.state = {
             temp: '',
         };
@@ -23,8 +23,8 @@ export default class VIPCard extends Component {
     toMyVIPCardPage() {
         location.href = `${location.protocol}//${location.host}/entry/index.html?#/registration`;
     }
-    toPersonalPage() {
-        location.href = `${location.protocol}//${location.host}/entry/index.html?#/registration`;
+    toPersonalInfo() {
+        location.href = `${location.protocol}//${location.host}/entry/index.html?#/personalInfo`;
     }
 
     render() {
@@ -50,7 +50,7 @@ export default class VIPCard extends Component {
                         </div>
                     </div>
                     <div className="box-item">
-                        <div className="list-item" onClick={this.toPersonalPage}>
+                        <div className="list-item" onClick={this.toPersonalInfo}>
                             <img src={require('./i/我的.png')} alt={'个人中心'} className="imgSize" />
                         </div>
                         <div className="list-item1">

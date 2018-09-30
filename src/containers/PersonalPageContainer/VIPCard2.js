@@ -6,9 +6,9 @@ export default class VIPCard2 extends Component {
 
     constructor(props) {
         super(props);
-        this.toDiscountPage = this.toDiscountPage.bind(this);
+        this.toUserUpdatePage = this.toUserUpdatePage.bind(this);
         this.toMyVIPCardPage = this.toMyVIPCardPage.bind(this);
-        this.toPersonalPage = this.toPersonalPage.bind(this);
+        this.toMyOilListPage = this.toMyOilListPage.bind(this);
         this.state = {
             temp: '',
         };
@@ -17,14 +17,14 @@ export default class VIPCard2 extends Component {
     componentWillMount() {
         // alert('aa');
     }
-    toDiscountPage() {
-        location.href = `${location.protocol}//${location.host}/entry/index.html?#/registration`;
+    toUserUpdatePage() {
+        location.href = `${location.protocol}//${location.host}/entry/index.html?#/userUpdate`;
     }
     toMyVIPCardPage() {
         location.href = `${location.protocol}//${location.host}/entry/index.html?#/registration`;
     }
-    toPersonalPage() {
-        location.href = `${location.protocol}//${location.host}/entry/index.html?#/registration`;
+    toMyOilListPage() {
+        location.href = `${location.protocol}//${location.host}/entry/index.html?#/myOilList`;
     }
 
     render() {
@@ -34,7 +34,7 @@ export default class VIPCard2 extends Component {
                 <div className="header">会员服务</div>
                 <div className="main">
                     <div className="box-item1">
-                        <div className="list-item" onClick={this.toDiscountPage}>
+                        <div className="list-item" onClick={this.toUserUpdatePage}>
                             <img src={require('./i/评价.png')} alt={'修改资料'} className="imgSize" />
                         </div>
                         <div className="list-item1">
@@ -50,7 +50,7 @@ export default class VIPCard2 extends Component {
                         </div>
                     </div>
                     <div className="box-item">
-                        <div className="list-item" onClick={this.toPersonalPage}>
+                        <div className="list-item" onClick={this.toMyOilListPage}>
                             <img src={require('./i/演出日历.png')} alt={'消费记录'} className="imgSize" />
                         </div>
                         <div className="list-item1">

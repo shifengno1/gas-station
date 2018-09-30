@@ -23,6 +23,7 @@
     "file-loader": "^1.1.11",
     "less": "^3.0.1",
     "less-loader": "^4.1.0",
+    "node-forge": "^0.7.6",
     "prop-types": "^15.6.1",
     "react": "^16.0.0",
     "react-bmap": "^1.0.78",

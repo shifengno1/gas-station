@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { InputItem } from 'antd-mobile';
+import { InputItem, Button, WhiteSpace } from 'antd-mobile';
 import 'antd-mobile/dist/antd-mobile.css';
 import actions from '../../actions/rechargeInitAction';
+import actions2 from '../../actions/userUpdateAction';
 import './weui.css';
 import './rechargeInitContainer.pcss'; // 样式引用
 
@@ -17,15 +18,46 @@ if (isIPhone) {
 class rechargeInitContainer extends Component {
     constructor(props) {
         super(props);
+        this.handleClick = this.handleClick.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
         this.state = {
-            //
+            rechargeNum: 0,
+            cardSum: 0,
         };
     }
-    componentDidMount() {
+    async componentDidMount() {
+        const { getUserData } = this.props;
+        await getUserData({
+            userId: '13',
+        });
+        const { userData } = this.props;
+        this.setState({
+            cardSum: userData.cardSum,
+        });
+    }
 
+    handleClick(event, num) {
+        this.setState({
+            rechargeNum: num,
+        });
+    }
+    handleSubmit(event) {
+        const { userData, rechargeInitData } = this.props;
+        rechargeInitData({
+            cardNum: userData.icCardNum,
+            sum: this.state.rechargeNum,
+        });
+        const { initData } = this.props;
+        if (initData.code === 200) {
+            alert('充值成功');
+            this.setState({
+                cardSum: this.state.cardSum + this.state.rechargeNum,
+            });
+        }
     }
 
     render() {
+        const { userData } = this.props;
         return (
             <div className="container bg">
                 <div className="content">
@@ -35,28 +67,37 @@ class rechargeInitContainer extends Component {
                     <div className="info_div">
                         <div className="info_item">
                             <div className="info_label">卡号</div>
-                            <div className="info_content" id="label-cardno">511724497239617</div>
+                            <div className="info_content" id="label-cardno">{userData.icCardNum}</div>
                         </div>
                         <div className="info_item">
                             <div className="info_label">当前余额</div>
-                            <div className="info_content" id="label-total-amount">0.00元</div>
+                            <div className="info_content" id="label-total-amount">{this.state.cardSum}元</div>
                         </div>
                         <div className="info_item">
                             <div className="info_label">当前积分</div>
-                            <div className="info_content" id="label-total-point">0</div>
+                            <div className="info_content" id="label-total-point">{userData.points}</div>
                         </div>
                     </div>
                     <InputItem
                         type="money"
                         placeholder="请输入充值金额"
                         clear
+                        value={this.state.rechargeNum}
+                        onChange={val =>
+                            this.setState({
+                                rechargeNum: val,
+                            })
+                        }
                         moneyKeyboardWrapProps={moneyKeyboardWrapProps}
                     >充值金额</InputItem>
                     <ul className="money_list" id="money_list">
-                        <li className="money" value="200">200元</li>
-                        <li className="money" value="500">500元</li>
-                        <li className="money" value="800">800元</li>
+                        <li className="money" value="200" onClick={(ev) => { this.handleClick(ev, 200); }}>200元</li>
+                        <li className="money" value="500" onClick={(ev) => { this.handleClick(ev, 500); }}>500元</li>
+                        <li className="money" value="800" onClick={(ev) => { this.handleClick(ev, 800); }}>800元</li>
                     </ul>
+                    <WhiteSpace />
+                    <Button onClick={this.handleSubmit}>充值</Button>
+                    <WhiteSpace />
                     <div className="desc">
                         <p>充值规则说明：</p>
                         <p>1、本功能仅支持微信支付，充值前请务必核对您需要的充值的卡类型。</p>
@@ -65,13 +106,6 @@ class rechargeInitContainer extends Component {
                         <p>4、新开卡客户需24小时后才能办理自助充值。</p>
                         <p>5、单笔、单日充值限额以各银行实物类商品网上支付限额为准。</p>
                     </div>
-                    <div className="footer">
-                        <a href='javascript:void(0);'
-                           id='payBtn'
-                           className='button'
-                           style={{ display: 'none' }}
-                        >立即充值</a>
-                    </div>
                 </div>
             </div>
         );
@@ -79,7 +113,9 @@ class rechargeInitContainer extends Component {
 }
 
 export default connect((state) => ({
-    listData: state.rechargeInit.listData,
+    userData: state.userUpdate.userData,
+    initData: state.rechargeInit.initData,
 }), {
+    getUserData: actions2.getUserData,
     rechargeInitData: actions.rechargeInitData,
 })(rechargeInitContainer);

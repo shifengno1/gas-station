@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import 'antd/dist/antd.css';
 import ReactDOM from 'react-dom';
+import crypto from 'crypto';
 import { Form, Icon, Input, Button, Checkbox, Divider } from 'antd';
 import actions from '../../actions/loginAction';
 import './LoginContainer.pcss';
@@ -11,7 +12,6 @@ const FormItem = Form.Item; // 样式引用
 class LoginContainer extends Component {
 
     constructor(props) {
-        // alert('constructor');
         super(props);
         this.onDivClick = this.onDivClick.bind(this);
         this.handleUsernameChange = this.handleUsernameChange.bind(this);
@@ -23,7 +23,7 @@ class LoginContainer extends Component {
             username: '',
             password: '',
             msg: '',
-            hintnMsg: 'saasasasasaas',
+            hintnMsg: '',
             showAlert: false,
             Ctime: null,
             count: 0,
@@ -31,36 +31,24 @@ class LoginContainer extends Component {
     }
 
     componentWillMount() {
-        // alert('WillMount');
         // 组件渲染之前调用
     }
 
     async componentDidMount() {
-        // alert('DidMount');
-        // 组件渲染结束之后调用
-        // const param = {};
-        // await this.props.fetchListData(param);
-        // const { listData } = this.props;
-        // qingqiu
     }
 
     componentWillReceiveProps(nextProps) {
         // props刷新的时候调用， nextProps新的props
     }
+
     onDivClick() {
-        // console.log('q123e1');
-        // this.setState({
-        //     showHint: 'cick world',
-        //     contentStyle: 'content-wrapper-blue',
-        // });
         this.props.changeHint();
-        // alert(JSON.stringify(this.props.changeHint()));
-        // const param = {};
-        // this.props.fetchListData(param);
     }
+
     toRegPage() {
         location.href = `${location.protocol}//${location.host}/entry/index.html?#/registration`;
     }
+
     testAlert() {
         let { count } = this.state;
         this.showFunc(count, 4000, () => {
@@ -70,16 +58,19 @@ class LoginContainer extends Component {
             count: ++count,
         });
     }
+
     handleUsernameChange(event) {
         this.setState({
             username: event.target.value,
         });
     }
+
     handlePasswordChange(event) {
         this.setState({
-            password: event.target.value,
+            password: mdPwd(event.target.value),
         });
     }
+
     showFunc(message, t, callback) {
         const { Ctime } = this.state;
         clearTimeout(Ctime);
@@ -104,15 +95,6 @@ class LoginContainer extends Component {
         });
     }
     async handleSubmit() {
-        // const { username, password } = this.state;
-        // console.log(`username${username}`);
-        // console.log(`password${password}`);
-        // if (this.props.onSubmit) {
-        //    const { username, password } = this.state;
-        //    await this.props.onSubmit({ username, password });
-        //    if (this.props.code === 200) {
-        //        alert('登陆成功！');
-        //     }
         const { username, password } = this.state;
         await this.props.onSubmit({ username, password });
         if (this.props.code === 200) {
@@ -125,18 +107,16 @@ class LoginContainer extends Component {
         } else if (this.props.code === 202) {
             this.showFunc('密码错误！');
         }
-        // console.log(this.props.code);
-        // // alert(this.state.msg);
         this.setState({ password: '' });
     }
 
+    mdPwd(text) {
+        return crypto.createHash('md5').update(text).digest('hex');
+    }
 
     render() {
-        // console.log('enter render');
         const { showHint, contentStyle, showAlert } = this.state;
         const { listData } = this.props;
-        // alert('1');
-        // alert(JSON.stringify(listData));
         return (<div className="content-wrapper">
             <div className="release-wrapper">
                 <div className="incontent-wrapper">

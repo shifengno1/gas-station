@@ -6,13 +6,11 @@ import thunk from '../lib/thunk';
 
 export default {
     rechargeInitData: (param, callback) => thunk({
-        url: 'gas/rechargeInit/list',
+        url: 'gas/recharge/add',
         param: {
-            operatorId: param.operatorId,
-            item: param.item,
-            time: param.time,
-            pageNo: param.pageNo,
-            pageSize: param.pageSize,
+            cardNum: param.cardNum,
+            sum: param.sum,
+            type: 'wx',
         },
         type: constant.RECHARGE_INIT_DATA,
     }),

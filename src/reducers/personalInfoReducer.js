@@ -3,14 +3,14 @@ import { createReducer } from '../lib/common';
 
 const defaultState = {
     infoData: {
-        "infors": {
-            "icCardNum": "",
-            "points": 0,
-            "createTime": ""
+        infors: {
+            icCardNum: '',
+            points: 0,
+            createTime: '',
         },
-        "rechargeSum": 0,
-        "oilSum": 0,
-        "moneySum": 0,
+        rechargeSum: 0,
+        oilSum: 0,
+        moneySum: 0,
     },
 };
 
